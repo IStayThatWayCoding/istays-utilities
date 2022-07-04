@@ -1,5 +1,4 @@
 const { Discord, Collection, Client } = require("discord.js");
-const { config } = require("dotenv");
 const bot = new Client();
 const mongoose = require('mongoose');
 const Levels = require('discord-xp');
