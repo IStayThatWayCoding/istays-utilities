@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const User = require('../../models/user');
 const Guild = require('../../models/guild');
 const colors = require('../../colors.json');
-const mutedRole = require('../Management/muteRole');
+// const mutedRole = require('../Management/muterole');
 const moment = require('moment');
 
 module.exports = {
