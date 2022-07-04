@@ -1,0 +1,11 @@
+module.exports = {
+    name: '',
+    aliases: [''],
+    category: '',
+    description: '',
+    usage: ``,
+    run: async (bot, message, args) => {
+    
+           
+    }
+}
