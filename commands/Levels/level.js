@@ -23,7 +23,7 @@ module.exports = {
 
         const fonts = [
             {
-                path: '../../Minecraft.ttf', face: { family: "Minecraft", weight: "regular", style: "normal"}
+                path: '../../fonts/Minecraft.ttf', face: { family: "Minecraft", weight: "regular", style: "normal"}
             }
         ]
 
