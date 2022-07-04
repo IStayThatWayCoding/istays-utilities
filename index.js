@@ -16,10 +16,6 @@ bot.mongoose = require("./utils/mongoose");
     require(`./handlers/${handler}`)(bot);
 });
 
-config({
-    path: `${__dirname}/.env`
-});
-
 fs.readdir('./events/', (err, files) => {
     if (err) return console.error;
     files.forEach(file => {
@@ -30,11 +26,6 @@ fs.readdir('./events/', (err, files) => {
         console.log(`Loaded event '${evtName}'`);
         
     });
-});
-
-
-config({
-    path: `${__dirname}/.env`
 });
 
 bot.mongoose.init();
