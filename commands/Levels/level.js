@@ -47,9 +47,11 @@ module.exports = {
         .setUsername(target.username)
         .setDiscriminator(target.discriminator)
 
-        rank.registerFonts(fonts);
+        // rank.registerFonts(fonts);
 
-        await rank.build({ fontX: "Minecraft", fontY: "Minecraft"})
+        // { fontX: "Minecraft", fontY: "Minecraft"}
+
+        await rank.build()
             .then(buffer => {
                 const attachment = new Discord.MessageAttachment(buffer, "rankcard.png");
                 message.channel.send(attachment);
