@@ -92,6 +92,10 @@ module.exports = {
            reason = 'No reason specified'
        }
 
+       if (reason == "test"){
+        reason = "This a test reason for a mute."
+       }
+
        let mutedRole = guildDB.mutedRole;
        let memberRole = guildDB.memberRole;
 
