@@ -10,7 +10,7 @@ module.exports = {
     run: async (bot, message, args) => {
 
         let number = 0;
-        const Users = this.bot.db.models.get('Levels');
+        const Users = await Levels.fetch(target.id, message.guild.id, true);
         let user = await Users.find({ guildId: message.channel.guild.id });
         user = user.sort((a, b) => b.level - a.level);
         let array = [];
