@@ -47,7 +47,7 @@ module.exports = async (bot, member, guild, args) => {
 
     logChannel.send(WelcomeLogEmbed);
 
-    let channel = member.guild.channels.cache.get("991954203478081617");
+    let channel = member.guild.channels.cache.get("988686851571343380");
 
     let embed123 = new Discord.MessageEmbed()
     .setTitle("New Member!")
