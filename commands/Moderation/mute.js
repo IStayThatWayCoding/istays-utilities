@@ -7,6 +7,7 @@ const colors = require('../../colors.json');
 // const User = require('../../models/settings');
 const ms = require('ms');
 const moment = require('moment');
+const user = require('../../models/user');
 
 module.exports = {
     name: 'mute',
@@ -96,25 +97,31 @@ module.exports = {
 
         if (reason == "SPAM" || "spam") {
             reason = "Any form of spamming."
-        } else if (reason == "DIS" || "dis") {
-            reason = "Disrespect towards another user."
-        } else if (reason == "RA" || "ra") {
-            reason = "Racism"
-        } else if (reason == "NSFW" || "nsfw") {
-            reason = "Explicit/NSFW content."
-        } else if (reason == "ADS" || "ads") {
-            reason = "Advertisement of social platform/other"
-        } else if (reason == "ADS2" || "ads2") {
-            reason = "Advertisement of Discord Server/other Discord related material"
-        } else if (reason == "LOW" || "low") {
-            reason = "Low severity rule break.\n\nPossible reasoning:\n-Asking for things like nitro\n-Excessive Capital Characters\n-Inappropiate name/profile/behavior\n-Social links\n-Severe chat flood (example: message spamming 20 line long messages 5 times)\n-Use of soundboard\n-Any other minor rule. Try messaging a staff member if any of these do not match."
-        } else if (reason == "HIGH" || "high") {
-            reason = "High severity rule break.\n\nPossible reasoning:\n-Filter bypassing\n-Harassment\n-Staff Disrespect\n-Mass pinging\n-Trolling\n-Abusive Behavior\n-Sexism\n-Scamming\n-Suicide References\n-Any other major rule. Try messaging a staff member if any of these do not match."
-        } else if (reason == "SEVERE" || "severe") {
-            reason = "Very high severity rule break.\n\nPossible reasoning:\n-DM advertising\n-Doxxing / DDoS / Threats\n-Child Porn\n-Raiding\n-Sending viruses or corrupt files\n-Underage on Discord (under 13)\n-ToS Violation\n-Any other severe rule. Try messaging a staff member if any of these do not match. These are mainly non tolerable and a staff member may not reply."
-        } else if (reason == "OTHER" || "other") {
-            reason = "Any rule has been broken that may have not fit other reasoning."
+
         }
+        
+        if(reason == "DIS" || "dis"){
+            reason = "Disrespect towards another user."
+        }
+        //  else if (reason == "DIS" || "dis") {
+        //     reason = "Disrespect towards another user."
+        // } else if (reason == "RA" || "ra") {
+        //     reason = "Racism"
+        // } else if (reason == "NSFW" || "nsfw") {
+        //     reason = "Explicit/NSFW content."
+        // } else if (reason == "ADS" || "ads") {
+        //     reason = "Advertisement of social platform/other"
+        // } else if (reason == "ADS2" || "ads2") {
+        //     reason = "Advertisement of Discord Server/other Discord related material"
+        // } else if (reason == "LOW" || "low") {
+        //     reason = "Low severity rule break.\n\nPossible reasoning:\n-Asking for things like nitro\n-Excessive Capital Characters\n-Inappropiate name/profile/behavior\n-Social links\n-Severe chat flood (example: message spamming 20 line long messages 5 times)\n-Use of soundboard\n-Any other minor rule. Try messaging a staff member if any of these do not match."
+        // } else if (reason == "HIGH" || "high") {
+        //     reason = "High severity rule break.\n\nPossible reasoning:\n-Filter bypassing\n-Harassment\n-Staff Disrespect\n-Mass pinging\n-Trolling\n-Abusive Behavior\n-Sexism\n-Scamming\n-Suicide References\n-Any other major rule. Try messaging a staff member if any of these do not match."
+        // } else if (reason == "SEVERE" || "severe") {
+        //     reason = "Very high severity rule break.\n\nPossible reasoning:\n-DM advertising\n-Doxxing / DDoS / Threats\n-Child Porn\n-Raiding\n-Sending viruses or corrupt files\n-Underage on Discord (under 13)\n-ToS Violation\n-Any other severe rule. Try messaging a staff member if any of these do not match. These are mainly non tolerable and a staff member may not reply."
+        // } else if (reason == "OTHER" || "other") {
+        //     reason = "Any rule has been broken that may have not fit other reasoning."
+        // }
 
 
 
