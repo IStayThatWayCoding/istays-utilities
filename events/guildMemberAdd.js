@@ -17,7 +17,8 @@ module.exports = async (bot, member, guild, args) => {
                 guildID: member.guild.id,
                 guildName: member.guild.name,
                 prefix: process.env.PREFIX,
-                welcomeLogs: null
+                welcomeLogs: null,
+                logChannelID: null,
             });
 
             await newGuild.save()
