@@ -24,7 +24,7 @@ module.exports = {
 
         message.channel.send(lbembed)
 
-         message.channel.send(`**Leaderboard**:\n\n${lb.join("\n\n")}`);
+         // message.channel.send(`**Leaderboard**:\n\n${lb.join("\n\n")}`);
 }
 
 }
