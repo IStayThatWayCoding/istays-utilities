@@ -8,7 +8,7 @@ module.exports = {
     usage: `help`,
     run: async (bot, message, args) => {
 
-        if(!message.member.roles.cache.has("993437284655431720")) return;
+        if(!message.member.roles.cache.has("932721572370862110")) return;
 
         if(args[0]) {
             return getCMD(bot, message, args[0]);
