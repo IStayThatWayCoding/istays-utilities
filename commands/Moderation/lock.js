@@ -7,6 +7,10 @@ module.exports = {
     description: 'Lock command',
     usage: `lock <reason>`,
     run: async (bot, message, args) => {
+
+        message.delete();
+
+        
         if(!message.member.hasPermission("MANAGE_CHANNELS")) return;
         if(!message.guild.me.hasPermission("MANAGE_CHANNELS")) return;
 
