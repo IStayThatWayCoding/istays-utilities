@@ -14,7 +14,7 @@ module.exports = {
 
         const leaderboard = await Levels.computeLeaderboard(bot, rawLeaderboard, true);
 
-        const lb = leaderboard.map(e => `${e.position}. ${e.username}#${e.discriminator}\nLevel: ${e.level}\nXP: ${e.xp.toLocaleString()}`); // We map the outputs.
+        const lb = leaderboard.map(e => `${e.position}. **${e.username}#${e.discriminator}**\nLevel: ${e.level}\nXP: ${e.xp.toLocaleString()}\n`); // We map the outputs.
 
         let lbembed = new Discord.MessageEmbed()
         .setAuthor("IStay's Utilities", bot.user.avatarURL())
@@ -24,7 +24,7 @@ module.exports = {
 
         message.channel.send(lbembed)
 
-         message.channel.send(`**Leaderboard**:\n\n${lb.join("\n\n")}`);
+         // message.channel.send(`**Leaderboard**:\n\n${lb.join("\n\n")}`);
 }
 
 }

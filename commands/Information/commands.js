@@ -9,7 +9,7 @@ module.exports = {
     usage: `commands`,
     run: async (bot, message) => {
 
-        if(!message.member.roles.cache.has("993437284655431720")) return;
+        if(!message.member.roles.cache.has("932721572370862110")) return;
 
         return getAll(bot, message)
     }
