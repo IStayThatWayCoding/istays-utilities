@@ -10,7 +10,7 @@ module.exports = {
         if(!message.member.hasPermission("MANAGE_CHANNELS")) return;
         if(!message.guild.me.hasPermission("MANAGE_CHANNELS")) return;
 
-        const role = message.guild.cache.get('932725047737585684');
+        const role = message.guild.roles.cache.find(r => r.id =='932725047737585684');
         let lockChannel = message.guild.channels.cache.get(args[0]);
         if (!lockChannel) lockChannel = message.channel;
 
