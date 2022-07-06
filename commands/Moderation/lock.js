@@ -36,7 +36,7 @@ module.exports = {
     
     
         if(validUnlocks.includes(time)) {
-            message.channel.updateOverwrites(message.guild.id, {
+            message.channel.permissionOverwrites.edit(message.guild.id, {
                 SEND_MESSAGES: false
             }).then(() => {
                 message.channel.sendMessage(lifted);
@@ -46,12 +46,12 @@ module.exports = {
                 console.log(error);
             });
         } else {
-            message.channel.updateOverwrites(message.guild.id, {
+            message.channel.permissionOverwrites.edit(message.guild.id, {
                 SEND_MESSAGES: false
             }).then(() => {
                 message.channel.sendMessage(lockdown).then(() => {
                     bot.lockit[message.channel.id] = setTimeout(() => {
-                        message.channel.updateOverwrites(message.guild.id, {
+                        message.channel.permissionOverwrites.edit(message.guild.id, {
                             SEND_MESSAGES: true
                         }).then(message.channel.sendMessage(lifted)).catch(console.error);
                         delete bot.lockit[message.channel.id];
