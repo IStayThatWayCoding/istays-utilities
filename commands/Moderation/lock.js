@@ -11,7 +11,7 @@ module.exports = {
         if(!message.guild.me.hasPermission("MANAGE_CHANNELS")) return;
 
         const role = message.guild.cache.get('932725047737585684');
-        let lockChannel = mesasge.mentions.channels.first() || message.guild.channels.cache.get(args[0]);
+        let lockChannel = message.guild.channels.cache.get(args[0]);
         if (!lockChannel) lockChannel = message.channel;
 
         let reason = args.slice(1).join(' ');
