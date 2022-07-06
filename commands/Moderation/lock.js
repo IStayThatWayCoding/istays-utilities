@@ -23,13 +23,13 @@ module.exports = {
       if(!reason) return message.channel.send('No reason!')
     
     
-        let lockdown = new Discord.RichEmbed()
+        let lockdown = new Discord.MessageEmbed()
         .setTitle("Lockdown Activated")
         .setColor(color.red_light)
         .setDescription(`Lockdown for this channel has been activated. \n\n Duration: ${time} \n\n Reason: ${reason}`)
         .setFooter(`Channel has been locked by ${message.author.username}`, message.author.displayAvatarURL)
     
-        let lifted = new Discord.RichEmbed()
+        let lifted = new Discord.MessageEmbed()
         .setTitle("Lockdown Lifted")
         .setColor(color.green_light)
         .setDescription(`Lockdown for this channel has been lifted.`)
