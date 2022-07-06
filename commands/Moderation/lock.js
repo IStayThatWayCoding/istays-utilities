@@ -11,10 +11,9 @@ module.exports = {
         if(!message.guild.me.hasPermission("MANAGE_CHANNELS")) return;
 
         const role = message.guild.roles.cache.find(r => r.id =='932725047737585684');
-        let lockChannel = message.guild.channels.cache.get(args[0]);
-        if (!lockChannel) lockChannel = message.channel;
+        let lockChannel = message.channel;
 
-        let reason = args.slice(1).join(' ');
+        let reason = args.slice(0).join(' ');
         if(!reason) reason = "No reason specified."
 
         await lockChannel.updateOverwrite(role, {
