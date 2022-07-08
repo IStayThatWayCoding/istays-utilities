@@ -17,6 +17,7 @@ module.exports = {
 
         user.roles.remove(role);
         message.react("<a:CH_IconVoteYes:991970613113667614>");
+        user.send(`Your access to **IStay's Throne** in **${message.guild.name}** has been revoked.`)
 
 
 
