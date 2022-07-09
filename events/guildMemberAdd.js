@@ -56,13 +56,14 @@ module.exports = async (bot, member, guild, args) => {
 
     channel.send(embed123);
     channel.send("<@&932816049093607526>")
+    channel.send(`<@${user.id}>`)
     .then(msg => {
         msg.delete({ timeout: 1000})
     })
     .catch()
-    user.send("Welcome to **IStay's Resort!** Be sure to read the rules and enjoy your stay :)")
+    user.send("Welcome to **IStay's Resort!** Be sure to read the rules and enjoy your stay :)\n\nConnect with istay: <#988746581538902019>")
 
 
 
 
-}
+};
