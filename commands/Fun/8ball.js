@@ -57,9 +57,7 @@ module.exports = {
 				.setDescription(`${data.answer}`)
 				.setFooter(`8 ball! | Question by ${message.author.tag}`)
 
-				message.channel.send(embed)
-
-				message.channel.send(":game_die: - **Rolling...**")
+				message.channel.send("🤔 - **Thinking...**")
 				.then(msg => {
 					msg.delete({ timeout: 100})
 				})
