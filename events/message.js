@@ -16,6 +16,14 @@ module.exports = async (bot, message) => {
         .then(data => {
             message.channel.send(data.response)
         })
+        .catch(() => {
+            let error = new Discord.MessageEmbed()
+            .setTitle("Error!")
+            .setColor("#e80909")
+            .setDescription("AI Error: Couldn't Fetch Response! Please try a different input.")
+
+            message.channel.send(error)
+        }) 
     }
 
     const randomXP = Math.floor(Math.random() * 29) + 1; // Gives a number between 1-30 for XP (make this higher for boosters)

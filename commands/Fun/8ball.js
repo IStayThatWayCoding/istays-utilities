@@ -38,15 +38,31 @@ module.exports = {
     usage: `8ball <question>`,
     run: async (bot, message, args) => {
 
-        if(!args[2]) return message.channel.send("Please ask a **FULL** question.");
+        // if(!args[2]) return message.channel.send("Please ask a **FULL** question.");
 
 
+		
 
-        let result = Math.floor((Math.random() * answers.length));
+        // let result = Math.floor((Math.random() * answers.length));
         let question = args.slice(1).join(" ");
 
+			fetch(`https://api-monkedev.herokuapp.com/fun/8ball`)
+			.then(answer => answer.json())
+			.then(data => {
+				message.channel.send(data.answer)
+			})
+			.catch(() => {
+				let error = new Discord.MessageEmbed()
+				.setTitle("Error!")
+				.setColor("#e80909")
+				.setDescription("AI Error: Couldn't Fetch Response! Please try a different input.")
+	
+				message.channel.send(error)
+			}) 
+		
+
         const embed = new Discord.MessageEmbed()
-        .setTitle("8 Ball!")
+        .setTitle(question)
         .setColor("#00008b")
         .setDescription(`${answers[result]}`)
         .setFooter(`8 ball! | Question by ${message.author.tag}`)
