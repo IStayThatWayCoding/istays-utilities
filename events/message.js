@@ -27,6 +27,7 @@ module.exports = async (bot, message) => {
             .setDescription("AI Error: Couldn't Fetch Response! Please try a different input.")
 
             message.channel.send(error)
+            return;
         }) 
     }
 
