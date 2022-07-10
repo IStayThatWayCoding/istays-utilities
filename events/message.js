@@ -30,8 +30,7 @@ module.exports = async (bot, message) => {
 
 }
     const noXP = [
-        "995603783671361576",
-        "988686880889507890"
+        "995603783671361576"
     ]
 
     if(noXP.includes(message.channel.id)) return;
