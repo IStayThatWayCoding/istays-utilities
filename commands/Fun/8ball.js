@@ -58,6 +58,16 @@ module.exports = {
 				.setFooter(`8 ball! | Question by ${message.author.tag}`)
 
 				message.channel.send(embed)
+
+				message.channel.send(":game_die: - **Rolling...**")
+				.then(msg => {
+					msg.delete({ timeout: 100})
+				})
+				.catch()
+				setTimeout(function(){
+					message.channel.send(embed);
+				}, 200);
+		
 			})
 			.catch(() => {
 				let error = new Discord.MessageEmbed()
@@ -67,16 +77,9 @@ module.exports = {
 	
 				message.channel.send(error)
 			}) 
+
+		}}
 		
 
 
 
-        message.channel.send(":game_die: - **Rolling...**")
-        .then(msg => {
-            msg.delete({ timeout: 100})
-        })
-        .catch()
-        setTimeout(function(){
-            message.channel.send(embed);
-        }, 200);
-}}
