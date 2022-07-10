@@ -10,7 +10,7 @@ module.exports = async (bot, message) => {
 
     if (!message.guild) return;
 
-    if (!message.content.startsWith(prefix)) return;
+
 
 
     if (!message.member) message.member = await message.guild.fetchMember(message);
@@ -190,6 +190,6 @@ module.exports = async (bot, message) => {
     }
 
 
-
+    if (!message.content.startsWith(prefix)) return;
    
 };
