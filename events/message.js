@@ -200,10 +200,9 @@ module.exports = async (bot, message) => {
             }
         }
 
-        if (!message.content.startsWith(prefix)) return;
 
     }
 
-    
+    if (!message.content.startsWith(prefix)) return;
 
 };
