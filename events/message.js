@@ -10,27 +10,8 @@ module.exports = async (bot, message) => {
 
     if (!message.guild) return;
 
-
-
-
-    if (!message.member) message.member = await message.guild.fetchMember(message);
-
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
-    const cmd = args.shift().toLowerCase();
-
-    if (cmd.length === 0) return;
-
-    let command = bot.commands.get(cmd);
-    if (!command) command = bot.commands.get(bot.aliases.get(cmd));
-
-    if (command)
-        command.run(bot, message, args);
-
     if(message.channel.id === "995603783671361576"){
         
-        if(!message.content.startsWith(prefix)){
-
-       
         fetch(`https://api-monkedev.herokuapp.com/fun/chat?msg=${message.content}&uid=${message.author.id}`)
         .then(response => response.json())
         .then(data => {
@@ -45,15 +26,15 @@ module.exports = async (bot, message) => {
             message.channel.send(error)
             return;
         }) 
-    }
+    
 
 }
-    // const noXP = [
-    //     "995603783671361576",
-    //     "988686880889507890"
-    // ]
+    const noXP = [
+        "995603783671361576",
+        "988686880889507890"
+    ]
 
-    // if(noXP.includes(message.channel.id)) return;
+    if(noXP.includes(message.channel.id)) return;
     if(message.channel.id == "995603783671361576") return;
     const randomXP = Math.floor(Math.random() * 29) + 1; // Gives a number between 1-30 for XP (make this higher for boosters)
     
@@ -189,7 +170,21 @@ module.exports = async (bot, message) => {
         }
     }
 
-
     if (!message.content.startsWith(prefix)) return;
+
+
+    if (!message.member) message.member = await message.guild.fetchMember(message);
+
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const cmd = args.shift().toLowerCase();
+
+    if (cmd.length === 0) return;
+
+    let command = bot.commands.get(cmd);
+    if (!command) command = bot.commands.get(bot.aliases.get(cmd));
+
+    if (command)
+        command.run(bot, message, args);
+
    
 };
