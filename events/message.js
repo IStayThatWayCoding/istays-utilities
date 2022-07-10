@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const Levels = require('discord-xp');
 
 module.exports = async (bot, message) => {
-    bot.emit('checkMessage', msg => {
+
 
     if (message.author.bot) return;
 
@@ -11,7 +11,7 @@ module.exports = async (bot, message) => {
     if (!message.guild) return;
 
     
-}) 
+
     
 
     const randomXP = Math.floor(Math.random() * 29) + 1; // Gives a number between 1-30 for XP (make this higher for boosters)
