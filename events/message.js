@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 const Levels = require('discord-xp');
+const fetch = require('node-fetch').default;
 
 module.exports = async (bot, message) => {
-
 
     if (message.author.bot) return;
 
@@ -10,9 +10,13 @@ module.exports = async (bot, message) => {
 
     if (!message.guild) return;
 
-    
-
-    
+    if(message.channel.id === "995603783671361576"){
+        fetch(`https://api-monkedev.herokuapp.com/fun/chat?msg=${message.content}&uid=${message.author.id}`)
+        .then(response => response.json())
+        .then(data => {
+            message.channel.send(data.response)
+        })
+    }
 
     const randomXP = Math.floor(Math.random() * 29) + 1; // Gives a number between 1-30 for XP (make this higher for boosters)
     const hasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, randomXP);
