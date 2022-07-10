@@ -63,8 +63,8 @@ module.exports = async (bot, message) => {
 
 
     if (noXP.includes(message.channel.id)) {
-        user.subtractXp(message.author.id, message.guild.id, randomXP);
-    } else if (!noXP.includes(message.channel.id)) {
+        Levels.subtractXp(message.author.id, message.guild.id, randomXP);
+    } else {
 
         const hasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, randomXP);
         if (hasLeveledUp) {
