@@ -8,7 +8,7 @@ module.exports = {
 
         const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 
-        message.channel.send(`*IStay's Utilities: Made ${member.tag} a server operator.*`)
+        message.channel.send(`*[IStay's Utilities: Made <@${member.id}> a server operator.]*`)
            
     }
 }
