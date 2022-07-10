@@ -50,7 +50,14 @@ module.exports = {
 			fetch(`https://api-monkedev.herokuapp.com/fun/8ball`)
 			.then(answer => answer.json())
 			.then(data => {
-				message.channel.send(data.answer)
+
+				const embed = new Discord.MessageEmbed()
+				.setTitle(question)
+				.setColor("#00008b")
+				.setDescription(`${data.answer}`)
+				.setFooter(`8 ball! | Question by ${message.author.tag}`)
+
+				message.channel.send(embed)
 			})
 			.catch(() => {
 				let error = new Discord.MessageEmbed()
@@ -62,11 +69,7 @@ module.exports = {
 			}) 
 		
 
-        const embed = new Discord.MessageEmbed()
-        .setTitle(question)
-        .setColor("#00008b")
-        .setDescription(`${answers[result]}`)
-        .setFooter(`8 ball! | Question by ${message.author.tag}`)
+
 
         message.channel.send(":game_die: - **Rolling...**")
         .then(msg => {
