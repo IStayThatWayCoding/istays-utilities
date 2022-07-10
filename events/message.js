@@ -38,7 +38,7 @@ module.exports = async (bot, message) => {
         "988686880889507890"
     ]
 
-    if(noXP.includes(message.channel.id)) return;
+    if(message.channel.id == noXP) return;
     const randomXP = Math.floor(Math.random() * 29) + 1; // Gives a number between 1-30 for XP (make this higher for boosters)
     
     const hasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, randomXP);
