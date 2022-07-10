@@ -52,7 +52,7 @@ module.exports = {
 			.then(data => {
 
 				const embed = new Discord.MessageEmbed()
-				.setTitle(question)
+				.setTitle("8 ball!")
 				.setColor("#00008b")
 				.setDescription(`${data.answer}`)
 				.setFooter(`8 ball! | Question by ${message.author.tag}`)
