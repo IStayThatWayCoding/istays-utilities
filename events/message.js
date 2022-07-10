@@ -58,16 +58,17 @@ module.exports = async (bot, message) => {
     ]
 
     const randomXP = Math.floor(Math.random() * 29) + 1; // Gives a number between 1-30 for XP (make this higher for boosters)
+    const user = await Levels.fetch(message.author.id, message.guild.id);
     
 
 
     if (noXP.includes(message.channel.id)) {
-        return;
+        user.subtractXp(message.author.id, message.guild.id, randomXP);
     } else if (!noXP.includes(message.channel.id)) {
 
         const hasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, randomXP);
         if (hasLeveledUp) {
-            const user = await Levels.fetch(message.author.id, message.guild.id);
+            
             let channel = message.member.guild.channels.cache.get("988686871209070612");
 
             let embed = new Discord.MessageEmbed()
