@@ -11,6 +11,22 @@ module.exports = async (bot, message) => {
 
     if (!message.guild) return;
 
+    if (!message.content.startsWith(prefix)) return;
+
+
+    if (!message.member) message.member = await message.guild.fetchMember(message);
+
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const cmd = args.shift().toLowerCase();
+
+    if (cmd.length === 0) return;
+
+    let command = bot.commands.get(cmd);
+    if (!command) command = bot.commands.get(bot.aliases.get(cmd));
+
+    if (command)
+        command.run(bot, message, args);
+
     if (message.channel.id === "995603783671361576") {
 
 
@@ -37,15 +53,14 @@ module.exports = async (bot, message) => {
         "988686880889507890"
     ]
 
-    // const randomXP = Math.floor(Math.random() * 29) + 1; // Gives a number between 1-30 for XP (make this higher for boosters)
-    const randomXP = null
+    const randomXP = Math.floor(Math.random() * 29) + 1; // Gives a number between 1-30 for XP (make this higher for boosters)
+    
 
 
     if (noXP.includes(message.channel.id)) {
-        randomXP = 0
+        return;
     } else {
 
-        randomXP = Math.floor(Math.random * 29) + 1;
         const hasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, randomXP);
         if (hasLeveledUp) {
             const user = await Levels.fetch(message.author.id, message.guild.id);
@@ -180,21 +195,7 @@ module.exports = async (bot, message) => {
             }
         }
 
-        if (!message.content.startsWith(prefix)) return;
 
-
-        if (!message.member) message.member = await message.guild.fetchMember(message);
-
-        const args = message.content.slice(prefix.length).trim().split(/ +/g);
-        const cmd = args.shift().toLowerCase();
-
-        if (cmd.length === 0) return;
-
-        let command = bot.commands.get(cmd);
-        if (!command) command = bot.commands.get(bot.aliases.get(cmd));
-
-        if (command)
-            command.run(bot, message, args);
 
     }
 
