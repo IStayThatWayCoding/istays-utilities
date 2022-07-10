@@ -42,7 +42,7 @@ module.exports = async (bot, message) => {
 
 
     if (noXP.includes(message.channel.id)) {
-        randomXP = Math.floor(Math.random * 0) + 0;
+        randomXP = 0
     } else {
 
         randomXP = Math.floor(Math.random * 29) + 1;
