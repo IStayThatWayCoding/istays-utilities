@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const Guild = require("../models/guild");
 const moment = require("moment");
+const { NativeDate } = require("mongoose");
 
 module.exports = async (bot, member, guild, args) => {
     const user = member.user;
@@ -56,6 +57,9 @@ module.exports = async (bot, member, guild, args) => {
 
     channel.send(embed123);
     channel.send("<@&932816049093607526>")
+    .then(msg => {
+        msg.delete({ timeout: 1000 })
+    })
     channel.send(`<@${user.id}>`)
     .then(msg => {
         msg.delete({ timeout: 1000})
@@ -63,6 +67,13 @@ module.exports = async (bot, member, guild, args) => {
     .catch()
     user.send("Welcome to **IStay's Resort!** Be sure to read the rules and enjoy your stay :)\n\nConnect with istay: <#988746581538902019>")
 
+    let welcomeChannel = member.guild.channels.cache.get("991954203478081617");
+
+    let anotherEmbed = new Discord.MessageEmbed()
+    .setColor("RANDOM")
+    .setDescription(`**[JOIN]** - <@${user.id}>`)
+
+    welcomeChannel.send(anotherEmbed);
 
 
 
