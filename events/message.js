@@ -12,8 +12,6 @@ module.exports = async (bot, message) => {
 
     if (message.channel.id === "995603783671361576") {
 
-        if (!message.content.startsWith(prefix)) {
-
 
             fetch(`https://api-monkedev.herokuapp.com/fun/chat?msg=${message.content}&uid=${message.author.id}`)
                 .then(response => response.json())
@@ -29,7 +27,7 @@ module.exports = async (bot, message) => {
                     message.channel.send(error)
                     return;
                 })
-        }
+        
 
     }
 
