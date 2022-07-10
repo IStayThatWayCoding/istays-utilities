@@ -9,9 +9,31 @@ module.exports = async (bot, message) => {
 
     let prefix = process.env.PREFIX;
 
+    if (message.channel.id === "995603783671361576") {
+
+        if(!message.content.startsWith(prefix)){
+
+
+        fetch(`https://api-monkedev.herokuapp.com/fun/chat?msg=${message.content}&uid=${message.author.id}`)
+            .then(response => response.json())
+            .then(data => {
+                message.channel.send(data.response)
+            })
+            .catch(() => {
+                let error = new Discord.MessageEmbed()
+                    .setTitle("Error!")
+                    .setColor("#e80909")
+                    .setDescription("AI Error: Couldn't Fetch Response! Please try a different input.")
+
+                message.channel.send(error)
+                return;
+            })
+
+        }
+
     if (!message.guild) return;
 
-
+    if (!message.content.startsWith(prefix)) return;
 
 
     if (!message.member) message.member = await message.guild.fetchMember(message);
@@ -27,27 +49,7 @@ module.exports = async (bot, message) => {
     if (command)
         command.run(bot, message, args);
 
-    if (message.channel.id === "995603783671361576") {
-
-            if(!message.content.startsWith(prefix)){
-
-
-            fetch(`https://api-monkedev.herokuapp.com/fun/chat?msg=${message.content}&uid=${message.author.id}`)
-                .then(response => response.json())
-                .then(data => {
-                    message.channel.send(data.response)
-                })
-                .catch(() => {
-                    let error = new Discord.MessageEmbed()
-                        .setTitle("Error!")
-                        .setColor("#e80909")
-                        .setDescription("AI Error: Couldn't Fetch Response! Please try a different input.")
-
-                    message.channel.send(error)
-                    return;
-                })
-
-            }
+    
         
 
     }
@@ -203,6 +205,6 @@ module.exports = async (bot, message) => {
 
     }
 
-    if (!message.content.startsWith(prefix)) return;
+
 
 };
