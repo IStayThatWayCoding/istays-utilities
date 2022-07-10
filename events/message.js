@@ -11,6 +11,10 @@ module.exports = async (bot, message) => {
     if (!message.guild) return;
 
     if(message.channel.id === "995603783671361576"){
+        
+        if(!message.content.startsWith(prefix)){
+
+       
         fetch(`https://api-monkedev.herokuapp.com/fun/chat?msg=${message.content}&uid=${message.author.id}`)
         .then(response => response.json())
         .then(data => {
@@ -25,6 +29,8 @@ module.exports = async (bot, message) => {
             message.channel.send(error)
         }) 
     }
+
+}
 
     const randomXP = Math.floor(Math.random() * 29) + 1; // Gives a number between 1-30 for XP (make this higher for boosters)
     const hasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, randomXP);
