@@ -5,7 +5,7 @@ const Levels = require('discord-xp');
 const fs = require('fs');
 const { DisTube } = require ('distube');
 
-bot.distube = new DisTube(client, {
+bot.distube = new DisTube(bot, {
     searchSongs: 5,
     searchCooldown: 30,
     leaveOnEmpty: false,
