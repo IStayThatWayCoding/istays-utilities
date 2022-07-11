@@ -1,4 +1,7 @@
+const { VoiceConnectionDisconnectReason } = require("@discordjs/voice");
+
 var voters = []
+var required = Math.ceil(message.member.voice.channel.members.size/2);
 
 module.exports = {
     name: 'skip',
@@ -8,6 +11,7 @@ module.exports = {
     run: async (bot, message, args) => {
 
         const queue = bot.distube.getQueue(message)
+        let members = Math.ceil(message.member.voice.channel.members.size/2)
 
 
         let channel = message.member.voice.channel;
@@ -21,7 +25,7 @@ module.exports = {
         if (!queue.autoplay && queue.songs.length <= 1){
             message.channel.send("No songs to skip!")
         }
-        
+
         if (message.member.roles.cache.has('934227687306833950')){
             voters = []
             message.channel.send("Force skipping song...")
@@ -30,19 +34,29 @@ module.exports = {
             return;
         }
 
-        if(voters.find(id=>id == message.author.id))
+        if(voters.find(id=>id == message.author.id)){
             return;
-
-        voters.push(message.author.id)
-
-        if(voters.length != 5) {
-            message.delete()
-            message.channel.send(5-voters.length + " more vote(s) needed to skip")
-        } else if(voters.length === 5){
-            voters = []
-            message.channel.send("Skipping song")
-            bot.distube.skip(message);
+        } else {
+            voters.push(message.author.id)
+            message.channel.send(`Votes ${voters.length}/${members}. ${members - voters.length} more vote(s) to skip`)
         }
+
+        if(voters.length === members){
+            if(queue.autoplay || queue.songs.length > 1){
+                bot.distube.skip(message)
+            } else bot.distube.stop(message)
+        }
+
+        // voters.push(message.author.id)
+
+        // if(voters.length != 5) {
+        //     message.delete()
+        //     message.channel.send(5-voters.length + " more vote(s) needed to skip")
+        // } else if(voters.length === 5){
+        //     voters = []
+        //     message.channel.send("Skipping song")
+        //     bot.distube.skip(message);
+        // }
 
         // const allowedRoles = [
         //     "992191733238595644",
