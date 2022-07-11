@@ -7,7 +7,7 @@ const { DisTube } = require ('distube');
 const colors = require('./colors.json');
 
 let musicEmbed = new MessageEmbed()
-.setAuthor("IStay's Utilities - Music", bot.user.avatarURL())
+.setAuthor("IStay's Utilities", bot.user.avatarURL())
 .setColor(colors.MUSIC)
 .setDescription(`Now Playing: \`${song.name}\` - \`${song.formattedDuration}\`\nRequested by: ${song.user}`)
 
