@@ -1,9 +1,15 @@
-const { Discord, Collection, Client } = require("discord.js");
+const { Discord, Collection, Client, MessageEmbed } = require("discord.js");
 const bot = new Client();
 const mongoose = require('mongoose');
 const Levels = require('discord-xp');
 const fs = require('fs');
 const { DisTube } = require ('distube');
+const colors = require('./colors.json');
+
+let musicEmbed = new MessageEmbed()
+.setAuthor("IStay's Utilities - Music", bot.user.avatarURL())
+.setColor(colors.MUSIC)
+.setDescription(`Now Playing: \`${song.name}\` - \`${song.formattedDuration}\`\nRequested by: ${song.user}`)
 
 bot.distube = new DisTube(bot, {
     searchSongs: 5,
@@ -12,6 +18,8 @@ bot.distube = new DisTube(bot, {
     leaveOnFinish: false,
     leaveOnStop: false,
 });
+bot.distube
+    .on("playSong", (message, queue, song) => message.channel.send(musicEmbed))
 
 
 Levels.setURL('mongodb+srv://IStay:JusSmi68@istayutil.zppsi1m.mongodb.net/Data');
