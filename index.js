@@ -5,7 +5,13 @@ const Levels = require('discord-xp');
 const fs = require('fs');
 const { DisTube } = require ('distube');
 
-bot.distube = new DisTube(bot, { searchSongs: false, emitNewSongOnly: true});
+bot.distube = new DisTube(client, {
+    searchSongs: 5,
+    searchCooldown: 30,
+    leaveOnEmpty: false,
+    leaveOnFinish: false,
+    leaveOnStop: false,
+});
 
 
 Levels.setURL('mongodb+srv://IStay:JusSmi68@istayutil.zppsi1m.mongodb.net/Data');
