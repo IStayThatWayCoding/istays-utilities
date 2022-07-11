@@ -1,4 +1,4 @@
-const { Discord, Collection, Client, MessageEmbed } = require("discord.js");
+const { Discord, Collection, Client} = require("discord.js");
 const bot = new Client();
 const mongoose = require('mongoose');
 const Levels = require('discord-xp');
