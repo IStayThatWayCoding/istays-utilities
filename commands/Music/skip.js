@@ -9,10 +9,12 @@ module.exports = {
     description: 'Skips the music',
     usage: `skip`,
     run: async (bot, message, args) => {
+        
 
         var required = Math.ceil(message.member.voice.channel.members.size/2);
 
         const queue = bot.distube.getQueue(message)
+        if (!queue.autoplay && queue.songs.length <= 1) return;
         let members = Math.ceil(message.member.voice.channel.members.size/2)
 
 
