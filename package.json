@@ -17,6 +17,7 @@
     "common-tags": "^1.8.2",
     "discord-xp": "^1.1.16",
     "discord.js": "^12.5.0",
+    "distube": "^3.3.4",
     "ffmpeg-static": "^4.4.1",
     "got": "^11.8.2",
     "moment": "^2.29.3",
