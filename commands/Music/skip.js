@@ -44,9 +44,9 @@ module.exports = {
         }
 
         if (queue.autoplay || queue.songs.length > 1){
-            distube.skip(message)
+            bot.distube.skip(message)
         } else {
-            distube.stop(message) 
+            bot.distube.stop(message) 
         }
 
         if(voters.length === members){
