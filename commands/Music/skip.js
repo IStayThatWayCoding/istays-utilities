@@ -9,6 +9,8 @@ module.exports = {
     description: 'Skips the music',
     usage: `skip`,
     run: async (bot, message, args) => {
+
+        
         
 
         var required = Math.ceil(message.member.voice.channel.members.size/2);
@@ -22,6 +24,7 @@ module.exports = {
         if (!channel) {
             return message.channel.send(`\`You are not connected to a voice channel!\``);
         }
+        if(message.member.voice.channel !== message.guild.me.voice.channel) return;
         if (!queue) {
             return message.channel.send("Nothing is playing in queue.")
         }

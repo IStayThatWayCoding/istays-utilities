@@ -7,6 +7,8 @@ module.exports = {
     run: async (bot, message, args) => {
 
         if(!message.member.voice.channel) return;
+
+        if(message.member.voice.channel !== message.guild.me.voice.channel) return;
         const music = args.join(" ")
 
         bot.distube.play(message.member.voice.channel, args.join(' ') , {

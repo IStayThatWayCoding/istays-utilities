@@ -110,7 +110,7 @@ bot.distube
         queue.textChannel?.send(
         new MessageEmbed()
         .setColor(colors.MUSIC)
-        .setDescription("Song Finished")
+        .setDescription("Song Finished/Skipped")
         ),
     )
     .on('disconnect', queue =>
