@@ -50,6 +50,7 @@ module.exports = {
         if(voters.length === members){
             if(queue.autoplay || queue.songs.length > 1){
                 bot.distube.skip(message)
+                voters = []
             } else bot.distube.stop(message)
         }
 
