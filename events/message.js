@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const Levels = require('discord-xp');
 const fetch = require('node-fetch').default;
+const { DisTube } = require('distube');
 
 module.exports = async (bot, message) => {
 
@@ -29,6 +30,29 @@ module.exports = async (bot, message) => {
     
 
 }
+
+bot.distube = new DisTube(bot, {
+    searchSongs: 5,
+    searchCooldown: 30,
+    leaveOnEmpty: false,
+    leaveOnFinish: false,
+    leaveOnStop: false,
+});
+
+bot.distube
+    .on('playSong', (message, queue, song) =>
+        message.channel.send(
+        `Playing \`${song.name}\` - \`${
+            song.formattedDuration
+        }\`\nRequested by: ${song.user}`,
+    ),
+)
+.on('error', (textChannel, e) => {
+    console.error(e)
+    textChannel.send(
+        `An error encountered: ${e.message.slice(0, 2000)}`,
+    )
+})
 
     if(message.channel.id == "995603783671361576") return;
     const randomXP = Math.floor(Math.random() * 29) + 1; // Gives a number between 1-30 for XP (make this higher for boosters)
