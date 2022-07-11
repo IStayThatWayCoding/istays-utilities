@@ -3,6 +3,9 @@ const bot = new Client();
 const mongoose = require('mongoose');
 const Levels = require('discord-xp');
 const fs = require('fs');
+const DisTube = require('distube');
+
+bot.distube = new DisTube(bot, { searchSongs: false, emitNewSongOnly: true});
 
 
 Levels.setURL('mongodb+srv://IStay:JusSmi68@istayutil.zppsi1m.mongodb.net/Data');
