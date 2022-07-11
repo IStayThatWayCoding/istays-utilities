@@ -1,5 +1,3 @@
-const distube = require('distube');
-
 module.exports = {
     name: 'play',
     aliases: ['p'],
