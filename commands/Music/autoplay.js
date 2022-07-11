@@ -1,3 +1,6 @@
+const Discord = require('discord.js');
+const colors = require('../../colors.json');
+
 module.exports = {
     name: 'autoplay',
     aliases: ['ap'],
@@ -13,7 +16,12 @@ module.exports = {
         if (!message.member.roles.cache.has('934227687306833950')) return message.channel.send("You must have the DJ role to use this command.")
 
         const mode = bot.distube.toggleAutoplay(message);
-        message.channel.send("Set autoplay mode to `" + (mode ? "On" : "Off") + "`");
+
+        let embed = new Discord.MessageEmbed()
+        .setColor(colors.MUSIC)
+        .setDescription("Set autoplay mode to `" + (mode ? "On" : "Off") + "`");
+        
+        message.channel.send(embed);
 
 
     }

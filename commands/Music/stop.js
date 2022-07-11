@@ -1,3 +1,6 @@
+const Discord = require('discord.js');
+const colors = require('../../colors.json');
+
 module.exports = {
     name: 'stop',
     category: 'Music',
@@ -7,7 +10,10 @@ module.exports = {
 
         if(!message.member.voice.channel) return;
         bot.distube.stop(message)
-        message.channel.send('Stopped the music!')
+        let embed = new Discord.MessageEmbed()
+        .setColor(colors.MUSIC)
+        .setDescription('Stopped the music!')
+        message.channel.send(embed)
 
 
     }

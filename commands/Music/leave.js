@@ -1,3 +1,6 @@
+const Discord = require('discord.js');
+const colors = require('../../colors.json');
+
 module.exports = {
     name: 'leave',
     category: 'Music',
@@ -8,8 +11,11 @@ module.exports = {
         if(!message.member.voice.channel) return;
         
         bot.distube.voices.get(message)?.leave()
-        message.channel.send('Left the voice channel!')
+        let embed = new Discord.MessageEmbed()
+        .setColor(colors.MUSIC)
+        .setDescription("Disconnected from voice channel!")
 
+        message.channel.send(embed);
 
     }
 }
