@@ -43,8 +43,10 @@ module.exports = {
             message.channel.send(`Votes ${voters.length}/${members}. ${members - voters.length} more vote(s) to skip`)
         }
 
-        if(!queue.autoplay && queue.songs.length < 1){
-            return;
+        if (queue.autoplay || queue.songs.length > 1){
+            distube.skip(message)
+        } else {
+            distube.stop(message) 
         }
 
         if(voters.length === members){
