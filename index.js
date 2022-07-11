@@ -43,7 +43,7 @@ fs.readdir('./events/', (err, files) => {
 });
 
 bot.distube
-    .on('playSong', (message, queue, song) =>
+    .on('playSong', (queue, song) =>
         message.channel.send(
         `Playing \`${song.name}\` - \`${
             song.formattedDuration
