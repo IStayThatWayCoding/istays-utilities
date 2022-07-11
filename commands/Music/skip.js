@@ -14,7 +14,7 @@ module.exports = {
         var required = Math.ceil(message.member.voice.channel.members.size/2);
 
         const queue = bot.distube.getQueue(message)
-        if (!queue.autoplay && queue.songs.length <= 1) return;
+        if (!queue.autoplay && queue.songs.length <= 1) return message.channel.send('No songs to skip! Ignoring...').then(m => m.delete({ timeout: 5000 }));
         let members = Math.ceil(message.member.voice.channel.members.size/2)
 
 

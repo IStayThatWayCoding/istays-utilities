@@ -77,7 +77,6 @@ bot.distube
         
         queue.textChannel?.send(
             new MessageEmbed()
-            .setTitle("Added Song")
             .setColor(colors.MUSIC)
             .setDescription(`Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user}`),
         
