@@ -17,7 +17,7 @@ bot.distube = new DisTube(bot, {
     leaveOnStop: false,
 });
 bot.distube
-.on('playSong', (queue, song) =>
+.on('playSong', (message, queue, song) =>
 message.channel.send(
     `Playing \`${song.name}\` - \`${
         song.formattedDuration
