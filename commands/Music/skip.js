@@ -44,6 +44,7 @@ module.exports = {
         } else {
             voters.push(message.author.id)
             message.channel.send(`Votes ${voters.length}/${members}. ${members - voters.length} more vote(s) to skip`)
+            voters = []
         }
 
         if (queue.autoplay || queue.songs.length > 1){
