@@ -5,11 +5,9 @@ const Levels = require('discord-xp');
 const fs = require('fs');
 const { DisTube } = require ('distube');
 const colors = require('./colors.json');
+const message = require("./events/message");
 
-let musicEmbed = new MessageEmbed()
-.setAuthor("Music")
-.setColor(colors.MUSIC)
-.setDescription(`Now Playing: \`${song.name}\` - \`${song.formattedDuration}\`\nRequested by: ${song.user}`)
+
 
 bot.distube = new DisTube(bot, {
     searchSongs: 5,
@@ -19,7 +17,13 @@ bot.distube = new DisTube(bot, {
     leaveOnStop: false,
 });
 bot.distube
-    .on("playSong", (message, queue, song) => message.channel.send(musicEmbed))
+.on('playSong', (queue, song) =>
+message.channel.send(
+    `Playing \`${song.name}\` - \`${
+        song.formattedDuration
+    }\`\nRequested by: ${song.user}`,
+),
+)
 
 
 Levels.setURL('mongodb+srv://IStay:JusSmi68@istayutil.zppsi1m.mongodb.net/Data');
