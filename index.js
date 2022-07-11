@@ -25,6 +25,12 @@ bot.distube
         }\`\nRequested by: ${song.user}`,
     ),
 )
+.on('error', (textChannel, e) => {
+    console.error(e)
+    textChannel.send(
+        `An error encountered: ${e.message.slice(0, 2000)}`,
+    )
+})
 
 
 Levels.setURL('mongodb+srv://IStay:JusSmi68@istayutil.zppsi1m.mongodb.net/Data');
