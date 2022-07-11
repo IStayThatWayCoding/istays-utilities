@@ -6,6 +6,7 @@ module.exports = {
     usage: `volume <num 0-100>`,
     run: async (bot, message, args) => {
         bot.distube.setVolume(message, Number(args[0]));
+        message.channel.send(`Volume set to \`${Number(args[0])}\``)
            
     }
 }
