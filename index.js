@@ -9,28 +9,7 @@ const message = require("./events/message");
 
 
 
-bot.distube = new DisTube(bot, {
-    searchSongs: 5,
-    searchCooldown: 30,
-    leaveOnEmpty: false,
-    leaveOnFinish: false,
-    leaveOnStop: false,
-});
 
-bot.distube
-    .on('playSong', (message, queue, song) =>
-        message.channel.send(
-        `Playing \`${song.name}\` - \`${
-            song.formattedDuration
-        }\`\nRequested by: ${song.user}`,
-    ),
-)
-.on('error', (textChannel, e) => {
-    console.error(e)
-    textChannel.send(
-        `An error encountered: ${e.message.slice(0, 2000)}`,
-    )
-})
 
 
 Levels.setURL('mongodb+srv://IStay:JusSmi68@istayutil.zppsi1m.mongodb.net/Data');
