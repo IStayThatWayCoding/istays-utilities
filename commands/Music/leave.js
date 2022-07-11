@@ -11,11 +11,11 @@ module.exports = {
         if(!message.member.voice.channel) return;
         
         bot.distube.voices.get(message)?.leave()
-        let embed = new Discord.MessageEmbed()
-        .setColor(colors.MUSIC)
-        .setDescription("Disconnected from voice channel!")
+        // let embed = new Discord.MessageEmbed()
+        // .setColor(colors.MUSIC)
+        // .setDescription("Disconnected from voice channel!")
 
-        message.channel.send(embed);
+        // message.channel.send(embed);
 
     }
 }
