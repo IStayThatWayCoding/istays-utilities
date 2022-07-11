@@ -6,10 +6,13 @@ const fs = require('fs');
 const { DisTube } = require ('distube');
 const colors = require('./colors.json');
 const message = require("./events/message");
+const { SpotifyPlugin } = require("@distube/spotify");
+const { SoundCloudPlugin } = require("@distube/soundcloud");
 
 
 
 bot.distube = new DisTube(bot, {
+    plugins: [new SpotifyPlugin(), SoundCloudPlugin()],
     searchSongs: 5,
     searchCooldown: 30,
     leaveOnEmpty: true,
@@ -62,11 +65,22 @@ bot.distube
         ),
     )
 
+
     .on('addSong', (queue, song) =>
+
+
+
         queue.textChannel?.send(
-            `Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user}`,
+            new Discord.MessageEmbed()
+                .setColor(colors.MUSIC)
+                .setAuthor("IStay's Utilities - Music")
+                .setDescription(`Added ${song.name} - \`${song.formattedDuration}\` to the queue!`)
+                .setFooter(`Added by ${song.user}`)
+ 
         ),
     )
+
+    // `Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user}`,
     .on('addList', (queue, playlist) =>
         queue.textChannel?.send(
             `Added \`${playlist.name}\` playlist (${
