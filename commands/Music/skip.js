@@ -44,17 +44,13 @@ module.exports = {
         } else {
             voters.push(message.author.id)
             message.channel.send(`Votes ${voters.length}/${members}. ${members - voters.length} more vote(s) to skip`)
-            voters = []
-        }
-
-        if (queue.autoplay || queue.songs.length > 1){
-            bot.distube.skip(message)
-        } else {
-            bot.distube.stop(message) 
+            
         }
 
         if(voters.length === members){
-            bot.distube.skip(message)
+            if(queue.autoplay || queue.songs.length > 1){
+                bot.distube.skip(message)
+            } else bot.distube.stop(message)
         }
 
         // voters.push(message.author.id)
