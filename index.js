@@ -59,9 +59,15 @@ const status = queue =>
 bot.distube
     .on('playSong', (queue, song) =>
         queue.textChannel?.send(
-            `Playing \`${song.name}\` - \`${
+            new MessageEmbed()
+            .setColor(colors.MUSIC)
+            .setDescription(`Playing \`${song.name}\` - \`${
                 song.formattedDuration
-            }\`\nRequested by: ${song.user}\n${status(queue)}`,
+            }\`\nRequested by: ${song.user}`)
+            .setFooter(`${status(queue)}`)
+            // `Playing \`${song.name}\` - \`${
+            //     song.formattedDuration
+            // }\`\nRequested by: ${song.user}\n${status(queue)}`,
         ),
     )
 
