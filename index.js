@@ -42,13 +42,25 @@ fs.readdir('./events/', (err, files) => {
     });
 });
 
+const status = queue =>
+    `Volume: \`${queue.volume}%\` | Filter: \`${
+        queue.filters.join(', ') || 'Off'
+    }\` | Loop: \`${
+        queue.repeatMode
+            ? queue.repeatMode === 2
+                ? 'All Queue'
+                : 'This Song'
+            : 'Off'
+    }\` | Autoplay: \`${queue.autoplay ? 'On' : 'Off'}\``
+
 bot.distube
-    .on('playSong', (song) =>
-        message.channel.send(
+    .on('playSong', (queue, song) =>
+        queue.textChannel?.send(
             `Playing \`${song.name}\` - \`${
                 song.formattedDuration
-            }\`\nRequested by: ${song.user}\n`
-        ))
+            }\`\nRequested by: ${song.user}\n${status(queue)}`,
+        ),
+    )
 .on('error', (textChannel, e) => {
     console.error(e)
     textChannel.send(
