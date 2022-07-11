@@ -26,6 +26,7 @@ module.exports = {
 
         if (!queue.autoplay && queue.songs.length <= 1){
             message.channel.send("No songs to skip!")
+            bot.distube.stop(message)
         }
 
         if (message.member.roles.cache.has('934227687306833950')){
