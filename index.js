@@ -12,7 +12,7 @@ const { SoundCloudPlugin } = require("@distube/soundcloud");
 
 
 bot.distube = new DisTube(bot, {
-    plugins: [new SpotifyPlugin(), SoundCloudPlugin()],
+    plugins: [new SpotifyPlugin(), new SoundCloudPlugin()],
     searchSongs: 5,
     searchCooldown: 30,
     leaveOnEmpty: true,
