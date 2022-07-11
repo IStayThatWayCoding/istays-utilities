@@ -184,26 +184,4 @@ module.exports = async (bot, message) => {
     if (command)
         command.run(bot, message, args);
 
-        bot.distube = new DisTube(bot, {
-            searchSongs: 5,
-            searchCooldown: 30,
-            leaveOnEmpty: false,
-            leaveOnFinish: false,
-            leaveOnStop: false,
-        });
-        
-        bot.distube
-            .on('playSong', (message, queue, song) =>
-                message.channel.send(
-                `Playing \`${song.name}\` - \`${
-                    song.formattedDuration
-                }\`\nRequested by: ${song.user}`,
-            ),
-        )
-        .on('error', (textChannel, e) => {
-            console.error(e)
-            textChannel.send(
-                `An error encountered: ${e.message.slice(0, 2000)}`,
-            )
-        })
 };
