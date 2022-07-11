@@ -137,7 +137,8 @@ bot.distube
         new MessageEmbed()
         .setTitle("Search Results")
         .setColor(colors.MUSIC)
-        .setDescription(`**Choose an option form below**\n${result.map(song => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``).join('\n')}\n*Enter anything else or wait 30 seconds to cancel.`)
+        .setDescription(`**Choose an option form below**\n${result.map(song => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``).join('\n')}`)
+        .setFooter(`Enter anything else or wait 30 seconds to cancel.`)
         // `**Choose an option from below**\n${result
     //         .map(
     //             song =>
@@ -151,13 +152,25 @@ bot.distube
      )
 })
 .on('searchCancel', message =>
-    message.channel.send('Searching canceled'),
+    message.channel.send(
+        new MessageEmbed()
+        .setColor(colors.MUSIC)
+        .setDescription('Searching cancelled'),
+    ),
 )
 .on('searchInvalidAnswer', message =>
-    message.channel.send('Invalid number of result.'),
+message.channel.send(
+    new MessageEmbed()
+    .setColor(colors.MUSIC)
+    .setDescription('Invalid answer.'),
+),
 )
 .on('searchNoResult', message =>
-    message.channel.send('No result found!'),
+message.channel.send(
+    new MessageEmbed()
+    .setColor(colors.MUSIC)
+    .setDescription('No result found'),
+),
 )
 .on('searchDone', () => {})
 
