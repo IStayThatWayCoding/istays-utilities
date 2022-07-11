@@ -4,7 +4,11 @@ module.exports = {
     description: 'Skips the music',
     usage: `skip`,
     run: async (bot, message, args) => {
-        bot.distube.skip(message)
+        if (!bot.distube.autoplay && bot.distube.songs.length == 1){
+            bot.distube.stop(message)
+        } else {
+            bot.distube.skip(message)
+        }
 
 
     }
