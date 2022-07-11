@@ -1,4 +1,3 @@
-var required = Math.ceil(message.member.voice.channel.members.size / 2);
 
 module.exports = {
     name: 'skip',
