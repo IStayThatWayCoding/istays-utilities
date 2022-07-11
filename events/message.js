@@ -3,6 +3,10 @@ const Levels = require('discord-xp');
 const fetch = require('node-fetch').default;
 const { DisTube } = require('distube');
 
+let count = 0
+
+let timeout
+
 module.exports = async (bot, message) => {
 
     if (message.author.bot) return;
@@ -30,6 +34,26 @@ module.exports = async (bot, message) => {
     
 
 }
+
+    if(message.channel.id === "988686879547330580"){
+        if (Number(content) === count + 1){
+            count++
+
+            if (timeout) clearTimeout(timeout)
+
+            timeout = setTimeout(
+                () => chanel.send(++count).catch(console.error),
+                30000
+            )
+
+        } else if (message.member.id !== bot.user.id) {
+            message.channel.send(`${message.author} messed up!`).catch(console.error)
+
+            count = 0
+
+            if (timeout) clearTimeout(timeout)
+        }
+    }
 
 
 
