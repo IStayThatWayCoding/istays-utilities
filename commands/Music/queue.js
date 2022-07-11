@@ -1,3 +1,6 @@
+const Discord = require('discord.js');
+const colors = require('../../colors.json');
+
 module.exports = {
     name: 'queue',
     aliases: ['q'],
@@ -5,21 +8,18 @@ module.exports = {
     description: 'Shows music queue',
     usage: `queue`,
     run: async (bot, message, args) => {
+
+        if(!message.member.voice.channel) return;
         const queue = bot.distube.getQueue(message)
         if (!queue) {
             message.channel.send('Nothing playing right now!')
         } else {
-            message.channel.send(
-                `Current queue:\n${queue.songs
-                    .map(
-                        (song, id) =>
-                            `**${id ? id : 'Playing'}**. ${
-                                song.name
-                            } - \`${song.formattedDuration}\``,
-                    )
-                    .slice(0, 10)
-                    .join('\n')}`,
-            )
+
+            let embed = new Discord.MessageEmbed()
+            .setTitle("Queue:")
+            .setColor(colors.MUSIC)
+            .setDescription(`${queue.songs.map((song, id) => `**${id + 1}**. ${song.name} - \`${song.formattedDuration}\``).slice(0 ,10).join('\n')}`);
+            message.channel.send(embed);
         }
 
     //     if (
