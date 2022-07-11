@@ -36,7 +36,7 @@ module.exports = async (bot, message) => {
 }
 
     if(message.channel.id === "988686879547330580"){
-        if (Number(content) === count + 1){
+        if (Number(message.content) === count + 1){
             count++
 
             if (timeout) clearTimeout(timeout)
