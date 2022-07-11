@@ -1,7 +1,7 @@
 const { VoiceConnectionDisconnectReason } = require("@discordjs/voice");
 
 var voters = []
-var required = Math.ceil(message.member.voice.channel.members.size/2);
+
 
 module.exports = {
     name: 'skip',
@@ -9,6 +9,8 @@ module.exports = {
     description: 'Skips the music',
     usage: `skip`,
     run: async (bot, message, args) => {
+
+        var required = Math.ceil(message.member.voice.channel.members.size/2);
 
         const queue = bot.distube.getQueue(message)
         let members = Math.ceil(message.member.voice.channel.members.size/2)
