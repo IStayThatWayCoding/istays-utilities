@@ -65,23 +65,16 @@ bot.distube
         ),
     )
 
-    let addsongEmbed = new Discord.MessageEmbed()
-    .setColor(colors.MUSIC)
-    .setAuthor("IStay's Utilities - Music")
-    .setDescription(`Added ${song.name} - \`${song.formattedDuration}\` to the queue!`)
-    .setFooter(`Added by ${song.user}`)
+
 
     .on('addSong', (queue, song) =>
             
-
-
         queue.textChannel?.send(
-            addsongEmbed
+            `Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user}`,
  
         ),
     )
 
-    // `Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user}`,
     .on('addList', (queue, playlist) =>
         queue.textChannel?.send(
             `Added \`${playlist.name}\` playlist (${
