@@ -16,13 +16,14 @@ bot.distube = new DisTube(bot, {
     leaveOnFinish: false,
     leaveOnStop: false,
 });
+
 bot.distube
-.on('playSong', (message, queue, song) =>
-message.channel.send(
-    `Playing \`${song.name}\` - \`${
-        song.formattedDuration
-    }\`\nRequested by: ${song.user}`,
-),
+    .on('playSong', (message, queue, song) =>
+        message.channel.send(
+        `Playing \`${song.name}\` - \`${
+            song.formattedDuration
+        }\`\nRequested by: ${song.user}`,
+    ),
 )
 
 
