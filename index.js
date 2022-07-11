@@ -12,9 +12,9 @@ const message = require("./events/message");
 bot.distube = new DisTube(bot, {
     searchSongs: 5,
     searchCooldown: 30,
-    leaveOnEmpty: false,
+    leaveOnEmpty: true,
     leaveOnFinish: false,
-    leaveOnStop: false,
+    leaveOnStop: true,
 });
 
 
