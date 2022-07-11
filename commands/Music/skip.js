@@ -31,9 +31,8 @@ module.exports = {
         if (!queue) {
             return message.channel.send("Nothing is playing in queue.")
         }
-        if (queue.songs.length < 1) {
-            return;
-        }
+
+        if (!queue.autoplay && queue.songs.length <= 1) return;
 
 
 
