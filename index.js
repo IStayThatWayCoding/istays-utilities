@@ -1,4 +1,4 @@
-const { Discord, Collection, Client, MessageEmbed} = require("discord.js");
+const { Discord, Collection, Client, MessageEmbed, Message} = require("discord.js");
 const bot = new Client();
 const mongoose = require('mongoose');
 const Levels = require('discord-xp');
@@ -63,8 +63,8 @@ bot.distube
             .setColor(colors.MUSIC)
             .setDescription(`Playing \`${song.name}\` - \`${
                 song.formattedDuration
-            }\`\nRequested by: ${song.user}`)
-            .setFooter(`${status(queue)}`)
+            }\`\nRequested by: ${song.user}\n${status(queue)}`)
+            
             // `Playing \`${song.name}\` - \`${
             //     song.formattedDuration
             // }\`\nRequested by: ${song.user}\n${status(queue)}`,
@@ -100,32 +100,55 @@ bot.distube
     )
 })
 
-.on('finish', queue => queue.textChannel?.send('Finish queue!'))
+.on('finish', queue => queue.textChannel?.send(
+            queue.textChannel?.send(
+            new MessageEmbed()
+            .setColor(colors.MUSIC)
+            .setDescription("Queue Finished")
+            ),
+    ))
     .on('finishSong', queue =>
-        queue.textChannel?.send('Finish song!'),
+        queue.textChannel?.send(
+        new MessageEmbed()
+        .setColor(colors.MUSIC)
+        .setDescription("Song Finished")
+        ),
     )
     .on('disconnect', queue =>
-        queue.textChannel?.send('Disconnected!'),
+        queue.textChannel?.send(
+            new MessageEmbed()
+            .setColor(colors.MUSIC)
+            .setDescription("Disconnected from VC")
+            ),
     )
     .on('empty', queue =>
         queue.textChannel?.send(
-            'The voice channel is empty! Leaving the voice channel...',
+            queue.textChannel?.send(
+                new MessageEmbed()
+                .setColor(colors.MUSIC)
+                .setDescription('The voice channel is empty! Leaving the voice channel...'),
+                ),
+            
         ),
     )
 .on('searchResult', (message, result) => {
     let i = 0
     message.channel.send(
-        `**Choose an option from below**\n${result
-            .map(
-                song =>
-                    `**${++i}**. ${song.name} - \`${
-                        song.formattedDuration
-                    }\``,
-            )
-            .join(
-                '\n',
-            )}\n*Enter anything else or wait 30 seconds to cancel*`,
-    )
+        new MessageEmbed()
+        .setTitle("Search Results")
+        .setColor(colors.MUSIC)
+        .setDescription(`**Choose an option form below**\n${result.map(song => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``).join('\n')}\n*Enter anything else or wait 30 seconds to cancel.`)
+        // `**Choose an option from below**\n${result
+    //         .map(
+    //             song =>
+    //                 `**${++i}**. ${song.name} - \`${
+    //                     song.formattedDuration
+    //                 }\``,
+    //         )
+    //         .join(
+    //             '\n',
+    //         )}\n*Enter anything else or wait 30 seconds to cancel*`,
+     )
 })
 .on('searchCancel', message =>
     message.channel.send('Searching canceled'),
