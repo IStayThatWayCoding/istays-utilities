@@ -67,6 +67,31 @@ bot.distube
         `An error encountered: ${e.message.slice(0, 2000)}`,
     )
 })
+.on('searchResult', (message, result) => {
+    let i = 0
+    message.channel.send(
+        `**Choose an option from below**\n${result
+            .map(
+                song =>
+                    `**${++i}**. ${song.name} - \`${
+                        song.formattedDuration
+                    }\``,
+            )
+            .join(
+                '\n',
+            )}\n*Enter anything else or wait 30 seconds to cancel*`,
+    )
+})
+.on('searchCancel', message =>
+    message.channel.send('Searching canceled'),
+)
+.on('searchInvalidAnswer', message =>
+    message.channel.send('Invalid number of result.'),
+)
+.on('searchNoResult', message =>
+    message.channel.send('No result found!'),
+)
+.on('searchDone', () => {})
 
 bot.mongoose.init();
 bot.login(process.env.TOKEN);
