@@ -1,4 +1,4 @@
-const { Discord, Collection, Client} = require("discord.js");
+const { Discord, Collection, Client, MessageEmbed} = require("discord.js");
 const bot = new Client();
 const mongoose = require('mongoose');
 const Levels = require('discord-xp');
@@ -67,10 +67,15 @@ bot.distube
 
 
 
-    .on('addSong', (queue, song) =>
-            
+    .on('addSong', (queue, song, message) =>
+        
         queue.textChannel?.send(
-            `Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user}`,
+            new MessageEmbed()
+            .setTitle("Added Song")
+            .setColor(colors.MUSIC)
+            .setDescription(`Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user}`),
+        
+            // `Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user}`,
  
         ),
     )
