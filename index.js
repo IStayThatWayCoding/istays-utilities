@@ -3,7 +3,7 @@ const bot = new Client();
 const mongoose = require('mongoose');
 const Levels = require('discord-xp');
 const fs = require('fs');
-const DisTube = require('distube');
+const { DisTube } = require ('distube');
 
 bot.distube = new DisTube(bot, { searchSongs: false, emitNewSongOnly: true});
 
