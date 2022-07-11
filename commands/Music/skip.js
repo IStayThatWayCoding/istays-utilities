@@ -19,7 +19,7 @@ module.exports = {
             "932719637873950810"
         ]
 
-        if (!allowedRoles.includes(message.author.id)) return message.channel.send("You do not have the power to skip. :/")
+        if (!message.member.roles.cache.has('934227687306833950')) return message.channel.send("You do not have the power to skip. :/")
 
         const queue = bot.distube.getQueue(message)
 
