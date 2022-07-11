@@ -17,20 +17,7 @@ bot.distube = new DisTube(bot, {
     leaveOnStop: false,
 });
 
-bot.distube
-    .on('playSong', (message, queue, song) =>
-        message.channel.send(
-        `Playing \`${song.name}\` - \`${
-            song.formattedDuration
-        }\`\nRequested by: ${song.user}`,
-    ),
-)
-.on('error', (textChannel, e) => {
-    console.error(e)
-    textChannel.send(
-        `An error encountered: ${e.message.slice(0, 2000)}`,
-    )
-})
+
 
 
 Levels.setURL('mongodb+srv://IStay:JusSmi68@istayutil.zppsi1m.mongodb.net/Data');
@@ -54,6 +41,21 @@ fs.readdir('./events/', (err, files) => {
         
     });
 });
+
+bot.distube
+    .on('playSong', (message, queue, song) =>
+        message.channel.send(
+        `Playing \`${song.name}\` - \`${
+            song.formattedDuration
+        }\`\nRequested by: ${song.user}`,
+    ),
+)
+.on('error', (textChannel, e) => {
+    console.error(e)
+    textChannel.send(
+        `An error encountered: ${e.message.slice(0, 2000)}`,
+    )
+})
 
 bot.mongoose.init();
 bot.login(process.env.TOKEN);
