@@ -53,6 +53,10 @@ module.exports = async (bot, message) => {
 
             if (timeout) clearTimeout(timeout)
         }
+
+        if(count == "100"){
+            message.channel.send(":tada: - **Successfully reached #100!**")
+        }
     }
 
 
