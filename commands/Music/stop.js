@@ -8,7 +8,7 @@ module.exports = {
     usage: `stop`,
     run: async (bot, message, args) => {
 
-        
+        if(message.member.voice.chanenl !== message.guild.me.voice.channel) return;
 
         if(!message.member.voice.channel) return;
         bot.distube.stop(message)
