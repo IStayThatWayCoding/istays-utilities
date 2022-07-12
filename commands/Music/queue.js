@@ -11,7 +11,7 @@ module.exports = {
 
         if(!message.member.voice.channel) return;
 
-        if(message.member.voice.chanenl !== message.guild.me.voice.channel) return;
+        if(message.member.voice.channel !== message.guild.me.voice.channel) return;
         const queue = bot.distube.getQueue(message)
         if (!queue) {
             message.channel.send('Nothing playing right now!')
