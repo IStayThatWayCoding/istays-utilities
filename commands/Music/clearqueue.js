@@ -21,7 +21,7 @@ module.exports = {
 
         if (!queue.autoplay && queue.songs.length <= 1) return message.channel.send('Can\'t clear queue!').then(m => m.delete({ timeout: 5000 }));
 
-        queue.songs.splice(0, 1)
+        queue.songs.splice(0, queue.songs.length - 1)
 
         let embed = new Discord.MessageEmbed()
         .setColor(colors.MUSIC)
