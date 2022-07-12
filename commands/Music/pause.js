@@ -7,8 +7,8 @@ module.exports = {
 
         if(!message.member.voice.channel) return;
 
-        if(message.member.voice.channel !== message.guild.me.voice.channel) return;
         
+
         bot.distube.pause(message)
 
 

@@ -24,7 +24,7 @@ module.exports = {
         if (!channel) {
             return message.channel.send(`\`You are not connected to a voice channel!\``);
         }
-        if(message.member.voice.channel !== message.guild.me.voice.channel) return;
+        
         if (!queue) {
             return message.channel.send("Nothing is playing in queue.")
         }
