@@ -10,6 +10,8 @@ module.exports = {
 
         if(message.member.voice.channel !== message.guild.me.voice.channel) return;
 
+        if (!message.member.roles.cache.has('934227687306833950')) return message.channel.send("You must have the DJ role to use this command.")
+
         if(!message.member.voice.channel) return;
         bot.distube.stop(message)
         let embed = new Discord.MessageEmbed()

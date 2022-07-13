@@ -15,7 +15,7 @@ module.exports = async (bot, message) => {
 
     if (!message.guild) return;
 
-    if(message.channel.id === "995603783671361576"){
+    if(message.channel.id === "996676151172943906"){
         
         fetch(`https://api-monkedev.herokuapp.com/fun/chat?msg=${message.content}&uid=${message.author.id}`)
         .then(response => response.json())
