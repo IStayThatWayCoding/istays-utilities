@@ -73,7 +73,11 @@ module.exports = async (bot, member, guild, args) => {
     let embed123 = new Discord.MessageEmbed()
         .setTitle("New Member!")
         .setColor("#7A5EAC")
-        .setDescription(`Welcome to **IStay's Resort**, ${user}!\n\nHere are some things to do in order to get started!\n\n- Be sure to read the <#988686829823856650> to stay out of trouble!\n - Get some <#988686824182538270> to personalize YOUR profile\n - Make yourself comfortable!\n\nOnce again, welcome to the server! <@&932816049093607526>, be sure to welcome them!`)
+        .setDescription(`Welcome to **IStay's Resort**, ${user}!\n\nHere are some things to do in order to get started!`)
+        .addField('Rules', '- Be sure to read the <#988686829823856650> to stay out of trouble!')
+        .addField('Roles', '- Get some <#988686824182538270> to personalize YOUR profile')
+        .addField('You are important here!', 'Make yourself comfortable!')
+        .setFooter('Once again, welcome to the server! <@&932816049093607526>, be sure to welcome them!');
 
 
     logChannel.send(WelcomeLogEmbed);
@@ -86,7 +90,7 @@ module.exports = async (bot, member, guild, args) => {
                 })
             })
 
-        channel.send(`<@${user.id}>`)
+        channel12345.send(`<@${user.id}>`)
             .then(msg => {
                 msg.delete({
                     timeout: 1000
@@ -95,7 +99,7 @@ module.exports = async (bot, member, guild, args) => {
             .catch()
     }, 10000)
 
-    await user.send("Welcome to **IStay's Resort!** Be sure to read the rules and enjoy your stay :)\n\nConnect with istay: <#988746581538902019>")
+    await user.send("Welcome to **IStay's Resort!** Be sure to read the rules and enjoy your stay :)")
 
     let welcomeChannel = member.guild.channels.cache.get("991954203478081617");
 
