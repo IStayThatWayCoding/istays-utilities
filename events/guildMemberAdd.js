@@ -48,7 +48,7 @@ module.exports = async (bot, member, guild, args) => {
 
     logChannel.send(WelcomeLogEmbed);
 
-    let channel = member.guild.channels.cache.get("988686851571343380");
+    let channel = bot.channels.cache.get("988686851571343380");
 
     let embed123 = new Discord.MessageEmbed()
     .setTitle("New Member!")
@@ -74,6 +74,9 @@ module.exports = async (bot, member, guild, args) => {
     .setDescription(`**[JOIN]** - <@${user.id}>`)
 
     welcomeChannel.send(anotherEmbed);
+
+    await bot.channels.cache.get('996713136465903677').setName(`🧑 Members: ${user.guild.memberCount}`)
+    await bot.channels.cache.get('996713529832919100').setName(`🥇 Goal: ${member.guild.memberCount}/50`)
 
 
 
