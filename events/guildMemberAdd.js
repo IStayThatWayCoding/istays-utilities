@@ -76,8 +76,8 @@ module.exports = async (bot, member, guild, args) => {
         .setDescription(`Welcome to **IStay's Resort**, ${user}!\n\nHere are some things to do in order to get started!`)
         .addField('Rules', '- Be sure to read the <#988686829823856650> to stay out of trouble!')
         .addField('Roles', '- Get some <#988686824182538270> to personalize YOUR profile')
-        .addField('You are important here!', 'Make yourself comfortable!')
-        .setFooter('Once again, welcome to the server! <@&932816049093607526>, be sure to welcome them!');
+        .addField('You are important here!', '- Make yourself comfortable!')
+        .setFooter('Once again, welcome to the server! Be sure to welcome them!');
 
 
     logChannel.send(WelcomeLogEmbed);
