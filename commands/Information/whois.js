@@ -7,7 +7,7 @@ module.exports = {
     description: 'Displays info about the mentioned user.',
     usage: `whois <@user>`,
     run: async (bot, message, args) => {
-        const member = message.mentions.members.first();
+        const member = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 
         if (!member)
             return message.channel.send('You must mention a user that you want information about.').then(m => m.delete({timeout: 5000}));
