@@ -59,6 +59,9 @@ if(message.channel.id === "988686879547330580"){
         if (timeout) clearTimeout(timeout)
     } else if (previousCounter[1].id === message.author.id) {
         message.channel.send(`${message.author} messed up! \n> You can't count two numbers in a row, silly!`)
+
+        count = 0;
+        
         return;
     }
 
