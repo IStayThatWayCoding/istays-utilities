@@ -53,13 +53,17 @@ if(message.channel.id === "988686879547330580"){
             30000
         )
 
-    } else if (message.member.id !== bot.user.id) {
+    }
+    
+    if (message.member.id !== bot.user.id) {
         message.channel.send(`${message.author} messed up!`).catch(console.error)
 
         count = 0
 
         if (timeout) clearTimeout(timeout)
-    } else if (previousCounter[1].id === message.author.id) {
+    }
+    
+    if (previousCounter[1].id === message.author.id) {
         message.channel.send(`${message.author} messed up! \n> You can't count two numbers in a row, silly!`)
 
         count = 0;
