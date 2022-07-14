@@ -4,6 +4,7 @@ const fetch = require('node-fetch').default;
 const { DisTube } = require('distube');
 
 let previousCounter = [];
+let count = 0;
 
 
 
