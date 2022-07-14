@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+
 module.exports = async (bot, member, guild, args) => {
 
     const user = member.user;

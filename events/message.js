@@ -3,10 +3,10 @@ const Levels = require('discord-xp');
 const fetch = require('node-fetch').default;
 const { DisTube } = require('distube');
 
-let previousCounter = [];
-let count = 0;
+// let previousCounter = [];
+// let count = 0;
 
-let timeout
+// let timeout
 
 
 
@@ -40,41 +40,41 @@ module.exports = async (bot, message) => {
 
 }
 
-if(message.channel.id === "988686879547330580"){
-    if (Number(message.content) === count + 1){
-        count++
+// if(message.channel.id === "988686879547330580"){
+//     if (Number(message.content) === count + 1){
+//         count++
 
-        previousCounter.push({ id: message.author.id });
+//         previousCounter.push({ id: message.author.id });
 
-        if (timeout) clearTimeout(timeout)
+//         if (timeout) clearTimeout(timeout)
 
-        timeout = setTimeout(
-            () => chanel.send(++count).catch(console.error),
-            30000
-        )
+//         timeout = setTimeout(
+//             () => chanel.send(++count).catch(console.error),
+//             30000
+//         )
 
-    }
+//     }
     
-    if (message.member.id !== bot.user.id) {
-        message.channel.send(`${message.author} messed up!`).catch(console.error)
+//     if (message.member.id !== bot.user.id) {
+//         message.channel.send(`${message.author} messed up!`).catch(console.error)
 
-        count = 0
+//         count = 0
 
-        if (timeout) clearTimeout(timeout)
-    }
+//         if (timeout) clearTimeout(timeout)
+//     }
     
-    if (previousCounter[1].id === message.author.id) {
-        message.channel.send(`${message.author} messed up! \n> You can't count two numbers in a row, silly!`)
+//     if (previousCounter[1].id === message.author.id) {
+//         message.channel.send(`${message.author} messed up! \n> You can't count two numbers in a row, silly!`)
 
-        count = 0;
+//         count = 0;
 
-        return;
-    }
+//         return;
+//     }
 
-    if(count == "100"){
-        message.channel.send(":tada: - **Successfully reached #100!**")
-    }
-}
+//     if(count == "100"){
+//         message.channel.send(":tada: - **Successfully reached #100!**")
+//     }
+// }
 
 
 
