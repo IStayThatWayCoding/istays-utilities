@@ -3,7 +3,6 @@ const Levels = require('discord-xp');
 const fetch = require('node-fetch').default;
 const { DisTube } = require('distube');
 
-let failed = false;
 let previousCounter = [];
 
 
@@ -38,28 +37,34 @@ module.exports = async (bot, message) => {
 
 }
 
-    if(message?.channel.id === countingChannel && !message?.author.bot){
-        const content = message?.content;
-        const author = message?.author;
+if(message.channel.id === "988686879547330580"){
+    if (Number(message.content) === count + 1){
+        count++
 
-        await message?.channel.messages.fetch({ limit: 20 }).then(async fetched => {
-            const filtered = fetched.filter(m => !m.author.bot);
+        previousCounter.push({ id: message.author.id });
 
-            filtered.forEach(m => {
-                // only keep if its a valid num
-                if (!isNaN(m.content)) {
-                    previousCounter.push({ id: m.author.id });
-                }
-            });
+        if (timeout) clearTimeout(timeout)
 
-            // same person detection
-            if (previousCounter[1].id === author.id) {
-                countingChannel.send(`${author} **FAILED!** \n> You can't count two numbers in a row, silly!`);
-                failed = true;
-                return;
-            }
-        })
+        timeout = setTimeout(
+            () => chanel.send(++count).catch(console.error),
+            30000
+        )
+
+    } else if (message.member.id !== bot.user.id) {
+        message.channel.send(`${message.author} messed up!`).catch(console.error)
+
+        count = 0
+
+        if (timeout) clearTimeout(timeout)
+    } else if (previousCounter[1].id === message.author.id) {
+        message.channel.send(`${message.author} messed up! \n> You can't count two numbers in a row, silly!`)
+        return;
     }
+
+    if(count == "100"){
+        message.channel.send(":tada: - **Successfully reached #100!**")
+    }
+}
 
 
 
