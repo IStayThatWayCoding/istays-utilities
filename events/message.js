@@ -6,6 +6,8 @@ const { DisTube } = require('distube');
 let previousCounter = [];
 let count = 0;
 
+let timeout
+
 
 
 module.exports = async (bot, message) => {
@@ -61,7 +63,7 @@ if(message.channel.id === "988686879547330580"){
         message.channel.send(`${message.author} messed up! \n> You can't count two numbers in a row, silly!`)
 
         count = 0;
-        
+
         return;
     }
 
