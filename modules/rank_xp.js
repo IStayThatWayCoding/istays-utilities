@@ -7,11 +7,16 @@ module.exports = async (message, bot) => {
     const botChannel = message.guild.channels.cache.get('988686880889507890')
     const chatBotChannel = message.guild.channels.cache.get('996676151172943906')
 
-    const disableXP = [botChannel, chatBotChannel]
+    const disableXP1 = [botChannel, chatBotChannel]
+
+    const disableXP = [
+        "988686880889507890",
+        "996676151172943906"
+    ]
 
     const randomXP = Math.floor(Math.random() * 29) + 1; // Gives a number between 1-30 for XP (make this higher for boosters)
 
-    if(disableXP.includes(message.channel.id)) return;
+    if (disableXP.includes(message?.channel?.id)) return;
     
     const hasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, randomXP);
     if (hasLeveledUp) {
