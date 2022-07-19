@@ -1,7 +1,6 @@
 const rankSort = require('../modules/rank_sort');
 const Canvas = require('canvas');
 const cronjob = require('cron').CronJob;
-const a = require('../res/fonts')
 
 module.exports = bot => {
   
