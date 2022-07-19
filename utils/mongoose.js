@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-module.exports = {
+module.exports = async () => { 
     init: () => {
         const dbOptions = {
             useNewUrlParser: true,
