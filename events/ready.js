@@ -17,7 +17,7 @@ module.exports = async (bot) => {
         console.error
       }
 
-      console.error(`${path.basename(__filename)} There was a problem connecting to the database.`);
+
     })
     
 
