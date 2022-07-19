@@ -10,6 +10,8 @@ module.exports = {
 
         if (!message.member.roles.cache.has('992191733238595644')) return message.channel.send("You must have the <@&992191733238595644> role to use this command.")
 
+        console.log(parseInt('0'));
+
         const msg = await message.channel.send('🏓 Pinging...').then(m => m.delete({timeout: 100}));
         
         const embed = new Discord.MessageEmbed()
