@@ -139,7 +139,7 @@ module.exports = {
                     const avatar = await Canvas.loadImage(avatarURL);
                     ctx.drawImage(avatar, 60, 60, 160, 160);
 
-                    const attachment = new MessageAttachment(canvas.toBuffer(), "profile-image.png");
+                    const attachment = new MessageAttachment(canvas.toBuffer(), "rankCard.png");
                     message.channel.send(attachment);
                 }
             } finally {
