@@ -173,5 +173,4 @@ message.channel.send(
 )
 .on('searchDone', () => {})
 
-bot.mongoose.init();
 bot.login(process.env.TOKEN);
