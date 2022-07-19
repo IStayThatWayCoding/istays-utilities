@@ -1,152 +1,292 @@
-const Discord = require('discord.js');
-const Levels = require('discord-xp');
-
+const {
+    Message
+} = require('discord.js');
+const mongo = require('../utils/mongoose');
+const rankSchema = require('../models/rank_schem');
+const path = require('path');
+const xpLimit = new Set();
 
 module.exports = async (message, bot) => {
+    const guild = bot.guilds.cache.get('713668933433163827');
+    const botChannel = guild.channels.cache.get('988686880889507890');
+    const chatBotChannel = guild.channels.cache.get('996676151172943906');
 
-    const botChannel = message.guild.channels.cache.get('988686880889507890')
-    const chatBotChannel = message.guild.channels.cache.get('996676151172943906')
+    const disableXP = [botChannel, chatBotChannel];
 
-    const disableXP1 = [botChannel, chatBotChannel]
+    if (!message.author.bot && !xpLimit.has(message.author.id)) {
+        await mongo().then(async mongoose => {
 
-    const disableXP = [
-        "988686880889507890",
-        "996676151172943906"
-    ]
+            const sort = await rankSchema.find().catch(err => console.error(`${path.basename(__filename)} There was a problem finding a database entry: `, err));
 
-    const randomXP = Math.floor(Math.random() * 29) + 1; // Gives a number between 1-30 for XP (make this higher for boosters)
+            sortArr = [];
+            for (const data of sort) {
+                const {
+                    id,
+                    xp
+                } = data;
 
-    if (disableXP.includes(message?.channel?.id)) return;
-    
-    const hasLeveledUp = await Levels.appendXp(message.author.id, message.guild.id, randomXP);
-    if (hasLeveledUp) {
-        const user = await Levels.fetch(message.author.id, message.guild.id);
-        let channel = message.member.guild.channels.cache.get("988686871209070612");
+                sortArr.push({
+                    id,
+                    xp
+                });
+            }
 
-        let embed = new Discord.MessageEmbed()
-        .setTitle("Level Up")
-        .setColor("RANDOM")
-        .setDescription(`${message.author} has leveled up to **${user.level}**!`)
-        channel.send(embed);
-        channel.send(`${message.author}`).then(msg => msg.delete({ timeout: 1000 }));
+            sortArr.sort(function (a, b) {
+                return b.xp - a.xp;
+            });
 
-        if (user.level == 5) {
-            let role = message.guild.roles.cache.find(r => r.id == "932729951675887637");
+            const results = await rankSchema.find({
+                id: message.author.id
+            }).catch(err => console.err(`${path.basename(__filename)} There was a problem finding a database entry: `, err))
 
-            let embed = new Discord.MessageEmbed()
-                .setAuthor("IStay's Utilities", bot.user.avatarURL())
-                .setColor("RANDOM")
-                .setTitle("Level Reward!")
-                .setDescription("Hey there! You just unlocked a new level role! Information is below.")
-                .addField("Level Milestone:", user.level)
-                .addField("Role Unlocked:", role.name)
+            if (results.length === 0) {
+                await rankSchema.findOneAndUpdate({
+                    rank: 0,
+                    id: message.author.id,
+                    username: message.author.username,
+                    discrim: message.author.discriminator,
+                    avatar: message.author.avatar,
+                    level: 0,
+                    msgCount: 0,
+                    xp: 0,
+                    xxp: 0,
+                    xxxp: 100
+                }, {
+                    rank: 0,
+                    id: message.author.id,
+                    username: message.author.username,
+                    discrim: message.author.discriminator,
+                    avatar: message.author.avatar,
+                    level: 0,
+                    msgCount: 0,
+                    xp: 0,
+                    xxp: 0,
+                    xxxp: 100
 
-            message.author.send(embed);
+                }, {
+                    upsert: true
+                }).catch(err => console.error(`${path.basename(__filename)} There was an issue updating a database entry: `, err));
+            }
 
-            if (message.member.roles.cache.has(role.id)) return;
-            else await message.member.roles.add(role.id);
-        }
+            if (disableXP.includes(message.channel.id)) return;
 
-        if (user.level == 10) {
-            let role = message.guild.roles.cache.find(r => r.id == "932729587526434866");
+            function randomNum(min, max) {
+                return Math.floor(Math.random() * (max - min - 1) + min);
+            }
 
-            let embed = new Discord.MessageEmbed()
-                .setAuthor("IStay's Utilities", bot.user.avatarURL())
-                .setColor("RANDOM")
-                .setTitle("Level Reward!")
-                .setDescription("Hey there! You just unlocked a new level role! Information is below.")
-                .addField("Level Milestone:", user.level)
-                .addField("Role Unlocked:", role.name)
+            for (const data of results) {
+                let {
+                    xp,
+                    xxp,
+                    xxxp,
+                    level,
+                    msgCount
+                } = data;
 
-            message.author.send(embed);
+                let msgMath = parseInt(msgCount) + 1;
+                let random = randomNum(15, 25);
+                let xpMath = parseInt = parseInt(xp) + random;
+                let xxpMath = parseInt(xxp) + random;
 
-            if (message.member.roles.cache.has(role.id)) return;
-            else await message.member.roles.add(role.id);
-        }
+                let xxpInt = parseInt(xxp);
+                let xxxpInt = parseInt(xxxp);
+                let newUsername = message.author.username;
+                let newDiscrim = message.author.discriminator;
 
-        if (user.level == 20) {
-            let role = message.guild.roles.cache.find(r => r.id == "932729586830163968");
+                rankPosArr = [];
+                for (let i = 0; i < sortArr.length; i++) {
+                    await rankPosArr.push({
+                        pos: i + 1,
+                        id: sortArr[i].id,
+                        xp: sortArr[i].xp
+                    });
+                }
 
-            let embed = new Discord.MessageEmbed()
-                .setAuthor("IStay's Utilities", bot.user.avatarURL())
-                .setColor("RANDOM")
-                .setTitle("Level Reward!")
-                .setDescription("Hey there! You just unlocked a new level role! Information is below.")
-                .addField("Level Milestone:", user.level)
-                .addField("Role Unlocked:", role.name)
+                const findInArr = await rankPosArr.find(m => m.id === message.author.id);
+                rankPos = findInArr.pos;
 
-            message.author.send(embed);
+                await rankSchema.findOneAndUpdate({
+                    id: message.author.id
+                }, {
+                    rank: rankPos,
+                    username: newUsername,
+                    discrim: newDiscrim,
+                    avatar: message.author.avatar,
+                    xp: xpMath,
+                    xxp: xxpMath
+                }, {
+                    upsert: true
+                }).catch(err => console.error(`${path.basename(__filename)} There was a problem updating a database entry: `, err));
 
-            if (message.member.roles.cache.has(role.id)) return;
-            else await message.member.roles.add(role.id);
-        }
+                if (xxpMath > xxxpInt) {
+                    let levelMath = parseInt(level) + 1;
+                    let exponential = 5 * Math.pow(levelMath, 2) + (50 * levelMath) + 100 - 0;
 
-        if (user.level == 30) {
-            let role = message.guild.roles.cache.find(r => r.id == "932729586263941130");
+                    await rankSchema.findOneAndUpdate({
+                        id: message.author.id
+                    }, {
+                        level: levelMath,
+                        xp: xpMath,
+                        xxp: 0,
+                        xxxp: exponential
+                    }, {
+                        upsert: true
+                    }).catch(err => console.error(`${path.basename(__filename)} There was a problem updating a database entry: `, err));
 
-            let embed = new Discord.MessageEmbed()
-                .setAuthor("IStay's Utilities", bot.user.avatarURL())
-                .setColor("RANDOM")
-                .setTitle("Level Reward!")
-                .setDescription("Hey there! You just unlocked a new level role! Information is below.")
-                .addField("Level Milestone:", user.level)
-                .addField("Role Unlocked:", role.name)
+                    // let memberRole = guild.roles.cache.get('932725047737585684');
+                    let lvl5 = guild.roles.cache.get('932729951675887637');
+                    let lvl10 = guild.roles.cache.get('932729587526434866');
+                    let lvl20 = guild.roles.cache.get('932729586830163968');
+                    let lvl30 = guild.roles.cache.get('932729586263941130');
+                    let lvl40 = guild.roles.cache.get('932729585613811732');
+                    let lvl50 = guild.roles.cache.get('932728784942153798');
+                    let lvl60 = guild.roles.cache.get('932728782962454550');
 
-            message.author.send(embed);
+                    if (levelMath === 5) {
+                        message.member.roles.add(lvl5)
+                            .catch(err => console.error(`${path.basename(__filename)} There was a problem adding a role: `, err));
 
-            if (message.member.roles.cache.has(role.id)) return;
-            else await message.member.roles.add(role.id);
-        }
 
-        if (user.level == 40) {
-            let role = message.guild.roles.cache.find(r => r.id == "932729585613811732");
+                        let embed = new Discord.MessageEmbed()
+                            .setAuthor("IStay's Utilities", bot.user.avatarURL())
+                            .setColor("RANDOM")
+                            .setTitle("Level Reward!")
+                            .setDescription("Hey there! You just unlocked a new level role! Information is below.")
+                            .addField("Level Milestone:", "Level 5")
+                            .addField("Role Unlocked:", `<@&${lvl5}>`)
 
-            let embed = new Discord.MessageEmbed()
-                .setAuthor("IStay's Utilities", bot.user.avatarURL())
-                .setColor("RANDOM")
-                .setTitle("Level Reward!")
-                .setDescription("Hey there! You just unlocked a new level role! Information is below.")
-                .addField("Level Milestone:", user.level)
-                .addField("Role Unlocked:", role.name)
+                        message.author.send(embed);
+                    }
 
-            message.author.send(embed);
 
-            if (message.member.roles.cache.has(role.id)) return;
-            else await message.member.roles.add(role.id);
-        }
+                    if (levelMath === 10) {
+                        message.member.roles.add(lvl10)
+                            .catch(err => console.error(`${path.basename(__filename)} There was a problem adding a role: `, err));
 
-        if (user.level == 50) {
-            let role = message.guild.roles.cache.find(r => r.id == "932728784942153798");
 
-            let embed = new Discord.MessageEmbed()
-                .setAuthor("IStay's Utilities", bot.user.avatarURL())
-                .setColor("RANDOM")
-                .setTitle("Level Reward!")
-                .setDescription("Hey there! You just unlocked a new level role! Information is below.")
-                .addField("Level Milestone:", user.level)
-                .addField("Role Unlocked:", role.name)
+                        let embed = new Discord.MessageEmbed()
+                            .setAuthor("IStay's Utilities", bot.user.avatarURL())
+                            .setColor("RANDOM")
+                            .setTitle("Level Reward!")
+                            .setDescription("Hey there! You just unlocked a new level role! Information is below.")
+                            .addField("Level Milestone:", "Level 10")
+                            .addField("Role Unlocked:", `<@&${lvl10}>`)
 
-            message.author.send(embed);
+                        message.author.send(embed);
+                    }
 
-            if (message.member.roles.cache.has(role.id)) return;
-            else await message.member.roles.add(role.id);
-        }
+                    if (levelMath === 20) {
+                        message.member.roles.add(lvl20)
+                            .catch(err => console.error(`${path.basename(__filename)} There was a problem adding a role: `, err));
 
-        if (user.level == 60) {
-            let role = message.guild.roles.cache.find(r => r.id == "932728782962454550");
 
-            let embed = new Discord.MessageEmbed()
-                .setAuthor("IStay's Utilities", bot.user.avatarURL())
-                .setColor("RANDOM")
-                .setTitle("Level Reward!")
-                .setDescription("Hey there! You just unlocked a new level role! Information is below.")
-                .addField("Level Milestone:", user.level)
-                .addField("Role Unlocked:", role.name)
+                        let embed = new Discord.MessageEmbed()
+                            .setAuthor("IStay's Utilities", bot.user.avatarURL())
+                            .setColor("RANDOM")
+                            .setTitle("Level Reward!")
+                            .setDescription("Hey there! You just unlocked a new level role! Information is below.")
+                            .addField("Level Milestone:", "Level 20")
+                            .addField("Role Unlocked:", `<@&${lvl20}>`)
 
-            message.author.send(embed);
+                        message.author.send(embed);
+                    }
 
-            if (message.member.roles.cache.has(role.id)) return;
-            else await message.member.roles.add(role.id);
-        }
+                    if (levelMath === 30) {
+                        message.member.roles.add(lvl30)
+                            .catch(err => console.error(`${path.basename(__filename)} There was a problem adding a role: `, err));
+
+
+                        let embed = new Discord.MessageEmbed()
+                            .setAuthor("IStay's Utilities", bot.user.avatarURL())
+                            .setColor("RANDOM")
+                            .setTitle("Level Reward!")
+                            .setDescription("Hey there! You just unlocked a new level role! Information is below.")
+                            .addField("Level Milestone:", "Level 30")
+                            .addField("Role Unlocked:", `<@&${lvl30}>`)
+
+                        message.author.send(embed);
+                    }
+
+                    if (levelMath === 40) {
+                        message.member.roles.add(lvl40)
+                            .catch(err => console.error(`${path.basename(__filename)} There was a problem adding a role: `, err));
+
+
+                        let embed = new Discord.MessageEmbed()
+                            .setAuthor("IStay's Utilities", bot.user.avatarURL())
+                            .setColor("RANDOM")
+                            .setTitle("Level Reward!")
+                            .setDescription("Hey there! You just unlocked a new level role! Information is below.")
+                            .addField("Level Milestone:", "Level 40")
+                            .addField("Role Unlocked:", `<@&${lvl40}>`)
+
+                        message.author.send(embed);
+                    }
+
+                    if (levelMath === 50) {
+                        message.member.roles.add(lvl50)
+                            .catch(err => console.error(`${path.basename(__filename)} There was a problem adding a role: `, err));
+
+
+                        let embed = new Discord.MessageEmbed()
+                            .setAuthor("IStay's Utilities", bot.user.avatarURL())
+                            .setColor("RANDOM")
+                            .setTitle("Level Reward!")
+                            .setDescription("Hey there! You just unlocked a new level role! Information is below.")
+                            .addField("Level Milestone:", "Level 50")
+                            .addField("Role Unlocked:", `<@&${lvl50}>`)
+
+                        message.author.send(embed);
+                    }
+
+                    if (levelMath === 60) {
+                        message.member.roles.add(lvl60)
+                            .catch(err => console.error(`${path.basename(__filename)} There was a problem adding a role: `, err));
+
+
+                        let embed = new Discord.MessageEmbed()
+                            .setAuthor("IStay's Utilities", bot.user.avatarURL())
+                            .setColor("RANDOM")
+                            .setTitle("Level Reward!")
+                            .setDescription("Hey there! You just unlocked a new level role! Information is below.")
+                            .addField("Level Milestone:", "Level 60")
+                            .addField("Role Unlocked:", `<@&${lvl60}>`)
+
+                        message.author.send(embed);
+                    }
+                }
+            }
+        }).catch(err => console.error(`${path.basename(__filename)} There was a problem connecting to the database: `, err));
+
+        // Limit
+        xpLimit.add(message.author.id)
+
+        setTimeout(() => {
+            xpLimit.delete(message.author.id)
+        }, 60000)
     }
+
+    // Count messages towards the count (msgCount)
+
+    await mongo().then(async mongoose => {
+        const results = await rankSchema.find({
+            id: message.author.id
+        }).catch(err => console.error(`${path.basename(__filename)} There was a problem finding a database entry: `, err));
+
+        for (const data of results) {
+            let {
+                msgCount
+            } = data;
+
+            let msgMath = parseInt(msgCount) + 1;
+
+            await rankSchema.findOneAndUpdate({
+                id: messsage.author.id
+            }, {
+                msgCount: msgMath
+            }, {
+                upsert: true
+            }).catch(err => console.error(`${path.basename(__filename)} There was a problem updating a database entry: `, err));
+        }
+    })
 }

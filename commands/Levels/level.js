@@ -1,7 +1,14 @@
-const Discord = require('discord.js');
-const Levels = require('discord-xp');
-const canvacord = require('canvacord');
-const { normalizeUnits } = require('moment');
+const {
+    MessageAttachment
+} = require('discord.js');
+const mongo = require('../../utils/mongoose');
+const rankSchema = require('../../models/rank_schem');
+const Canvas = require('canvas');
+const path = require('path');
+
+function kFormatter(num) {
+    return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + "K" : Math.sign(num) * Math.abs(num);
+}
 
 module.exports = {
     name: 'level',
@@ -10,70 +17,135 @@ module.exports = {
     description: 'Provides user level',
     usage: `level/rank/xp`,
     run: async (bot, message, args) => {
-        // Goal: >level (@member)
+        const target = message.mentions.users.first() || bot.users.cache.get(args[0]) || message.author;
 
-        let mentionedMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-        if (!mentionedMember) mentionedMember = message.member;
+        const background = await Canvas.loadImage('../../res/images/rankbg.jpg');
+        const rankFirst = await Canvas.loadImage('../../res/images/firstplace.png');
+        const rankSecond = await Canvas.loadImage('../../res/images/secondplace.png');
+        const rankThird = await Canvas.loadImage('../../res/images/thirdplace.png');
 
-        const target = message.mentions.users.first() || bot.users.cache.get(args[0])|| message.author
-        if (!target){
-            target = message.author;
-        }
-        // if (!target) return message.channel.send('User has no levels!');
+        await mongo().then(async mongoose => {
+            try {
+                const results = await rankSchema.find({
+                    id: target.id
+                }).catch(err => console.error(`${path.basename(__filename)} There was a problem finding a database entry: `, err));
 
-        const fonts = [
-            {
-                path: '../../fonts/Minecraft.ttf', face: { family: "Minecraft", weight: "regular", style: "normal"}
+                if (results.length === 0) {
+                    return message.channel.send(`This user isn't ranked yet! (send messages)`)
+                        .catch(err => console.error(`${path.basename(__filename)} There was a problem sending an interaction: `, err));
+                }
+
+                for (const info of results) {
+                    let {
+                        username,
+                        discrim,
+                        rank,
+                        level,
+                        msgCount,
+                        xxp,
+                        xxxp
+                    } = info;
+
+                    const rankPos = parseInt(rank);
+                    const canvas = Canvas.createCanvas(930, 280);
+                    const ctx = canvas.getContext("2d");
+
+                    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+                    ctx.fillStyle = "rgba(0,0,0,0.5)";
+                    ctx.fillRect(20, 30, canvas.width - 40, canvas.height - 60);
+
+                    let userDiscrim = username + "#" + discrim;
+                    if (userDiscrim.length > 30) {
+                        ctx.font = "30px Minecraft";
+                        userDiscrim = userDiscrim.slice(0, 25) + "...";
+                    } else if (userDiscrim.legnth > 20) {
+                        ctx.font = "30px Minecraft";
+
+                    } else {
+                        ctx.font = "37px Minecraft";
+                    }
+                    ctx.fillStyle("#ffffff");
+                    ctx.fillText(userDiscrim, canvas.width / 3.8, canvas.height / 2.8);
+
+                    ctx.font = "35px Minecraft";
+                    ctx.fillStyle = "#44eaff";
+                    ctx.fillText(`Rank ${level}`, camvas.width / 3.8, canvas.height / 1.6);
+
+                    let xp2 = kFormatter(xxxp);
+                    let xp3 = kFormatter(xxp);
+                    let count = kFormatter(msgCount);
+
+                    ctx.font = "23px Minecraft";
+                    ctx.fillStyle = "#ffffff";
+                    ctx.textAlign = "right";
+                    ctx.fillText(`Message Count" ${count}`, canvas.width / 1.16, canvas.height / 1.6);
+
+                    const percentage = Math.floor((xxp / xxxp) * 100);
+                    const roundedPercent = Math.round(percentage);
+
+                    const testPerc = 100;
+                    for (let i = 0; i < testPerc; i++) {
+                        ctx.beginPath();
+                        ctx.lineWidth = 14;
+                        ctx.strokeStyle = "#48484E";
+                        ctx.fillStyle = "#48484E";
+                        ctx.arc(260 + (i * 5.32), 205, 8, 0, Math.PI * 2, true);
+                        ctx.stroke();
+                        ctx.fill();
+                    }
+
+                    for (let i = 0; i < roundedPercent; i++) {
+                        ctx.beginPath();
+                        ctx.lineWidth = 14;
+                        ctx.strokeStyle = "#44eaff";
+                        ctx.fillStyle = "#44eaff";
+                        ctx.arc(260 + (i * 5.32), 205, 5.5, 0, Math.PI * 2, true);
+                        ctx.stroke();
+                        ctx.fill();
+                    }
+
+                    ctx.font = "24px Minecraft";
+                    ctx.fillStyle = "#000000";
+                    ctx.fillText(`${xp3} / ${xp2} XP`, canvas.width / 1.525, canvas.height / 1.31);
+
+                    if (rankPos.length >= 5) {
+                        ctx.font = "45px Minecraft";
+                    } else if (rankPos.length >= 3) {
+                        ctx.font = "50px Minecraft";
+                    } else {
+                        ctx.font = "60px Minecraft";
+                    }
+
+                    if (rankPos === 1) {
+                        ctx.drawImage(rankFirst, 820, 50, 70, 70);
+                    } else if (rankPos === 2) {
+                        ctx.drawImage(rankSecond, 820, 50, 70, 70);
+                    } else if (rankPos === 3) {
+                        ctx.drawImage(rankThird, 820, 50, 70, 70);
+                    } else {
+                        ctx.font = "55px Minecraft";
+                        ctx.fillStyle = "#44eaff";
+                        ctx.textAlign = "right";
+                        ctx.fillText(`#${rankPos}`, canvas.width / 1.05, canvas.height / 2.8);
+                    }
+
+                    ctx.beginPath();
+                    ctx.arc(140, 140, 80, 0, Math.PI * 2, true);
+                    ctx.closePath();
+                    ctx.clip();
+
+                    const avatarURL = target.user.displayAvatarURL({format: "png"}) + "?size=64";
+                    const avatar = await Canvas.loadImage(avatarURL);
+                    ctx.drawImage(avatar, 60, 60, 160, 160);
+
+                    const attachment = new MessageAttachment(canvas.toBuffer(), "profile-image.png");
+                    message.channel.send(attachment);
+                }
+            } finally {
+                // not a thing
             }
-        ]
-
-        const user = await Levels.fetch(target.id, message.guild.id, true);
-        const neededXp = Levels.xpFor(parseInt(user.level) + 1);
-        if (!user) return message.reply("That user does not have any xp.");
-
-        const img = "https://i.imgur.com/RpwzsQc.png";
-    
-        const rank = new canvacord.Rank()
-        .setAvatar(target.displayAvatarURL({dynamic: false, format: 'png'}))
-        .setBackground("IMAGE", img)
-        .setCurrentXP(user.xp)
-        .setLevel(user.level, true)
-        .setLevelColor("#e30089", "#FFFFFF")
-        .setRequiredXP(neededXp)
-        .setRank(user.position)
-        .setRankColor("#e30089", "#FFFFFF")
-        .setStatus(target.presence.status)
-        .setProgressBar("#920058", "COLOR")
-        .setUsername(target.username)
-        .setDiscriminator(target.discriminator)
-
-        // rank.registerFonts(fonts);
-
-        // { fontX: "Minecraft", fontY: "Minecraft"}
-
-        await rank.build()
-            .then(buffer => {
-                const attachment = new Discord.MessageAttachment(buffer, "rankcard.png");
-                message.channel.send(attachment);
-            })
-    
-        // rank.build(fonts, "Minecraft")
-        //     .then(buffer => {
-        //         const attachment = new Discord.MessageAttachment(buffer, "rankcard.png");
-        //         message.channel.send(attachment);
-        //     });
-
-        // let embed = new Discord.MessageEmbed()
-        // .setAuthor("IStay's Utilities", bot.user.avatarURL())
-        // .setTitle("User Level")
-        // .setColor('RANDOM')
-        // .setDescription(`**${mentionedMember.user.tag}** is level **${target.level}**\n\nXP Progress: **${target.xp}/${Levels.xpFor(target.level + 1)}**`);
-
-        // try {
-        //     message.channel.send(embed)
-        // } catch (err) {
-        //     console.log(err);
-        // }
-           
+        })
     }
+
 }
