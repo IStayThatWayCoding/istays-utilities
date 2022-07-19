@@ -88,6 +88,8 @@ module.exports = async (message, bot) => {
                 let newUsername = message.author.username;
                 let newDiscrim = message.author.discriminator;
 
+                console.log(xxp);
+
                 rankPosArr = [];
                 for (let i = 0; i < sortArr.length; i++) {
                     await rankPosArr.push({
@@ -128,7 +130,7 @@ module.exports = async (message, bot) => {
                         upsert: true
                     }).catch(err => console.error(`${path.basename(__filename)} There was a problem updating a database entry: `, err));
 
-                    console.log(xxp);
+                    
 
                     // let memberRole = guild.roles.cache.get('932725047737585684');
                     let lvl5 = guild.roles.cache.get('932729951675887637');
@@ -280,7 +282,7 @@ module.exports = async (message, bot) => {
             console.log(msgCount);
 
             await rankSchema.findOneAndUpdate({
-                id: messsage.author.id
+                id: message.author.id
             }, {
                 msgCount: msgMath
             }, {
