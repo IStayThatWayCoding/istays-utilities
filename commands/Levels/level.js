@@ -70,7 +70,7 @@ module.exports = {
 
                     ctx.font = "35px grotesk";
                     ctx.fillStyle = "#44eaff";
-                    ctx.fillText(`Rank ${level}`, camvas.width / 3.8, canvas.height / 1.6);
+                    ctx.fillText(`Rank ${level}`, canvas.width / 3.8, canvas.height / 1.6);
 
                     let xp2 = kFormatter(xxxp);
                     let xp3 = kFormatter(xxp);
