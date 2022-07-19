@@ -2,7 +2,7 @@ const rankSort = require('../modules/rank_sort');
 const Canvas = require('canvas');
 const cronjob = require('cron').CronJob;
 const mongo = require('../utils/mongoose');
-const path = require('path')
+const path = require('path');
 
 module.exports = async (bot) => { 
   
@@ -17,7 +17,7 @@ module.exports = async (bot) => {
         console.error
       }
 
-      console.error(`${path.basename(__filename)} There was a problem connecting to the database: `, err);
+      console.error(`${path.basename(__filename)} There was a problem connecting to the database.`);
     })
     
 
