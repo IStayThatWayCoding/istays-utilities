@@ -19,10 +19,10 @@ module.exports = {
     run: async (bot, message, args) => {
         const target = message.mentions.users.first() || bot.users.cache.get(args[0]) || message.author;
 
-        const background = await Canvas.loadImage('../../res/images/rankbg.jpg');
-        const rankFirst = await Canvas.loadImage('../../res/images/firstplace.png');
-        const rankSecond = await Canvas.loadImage('../../res/images/secondplace.png');
-        const rankThird = await Canvas.loadImage('../../res/images/thirdplace.png');
+        const background = await Canvas.loadImage('./rankbg.jpg');
+        const rankFirst = await Canvas.loadImage('./firstplace.png');
+        const rankSecond = await Canvas.loadImage('./secondplace.png');
+        const rankThird = await Canvas.loadImage('./thirdplace.png');
 
         await mongo().then(async mongoose => {
             try {
