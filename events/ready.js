@@ -4,7 +4,7 @@ const cronjob = require('cron').CronJob;
 
 module.exports = bot => {
   
-    Canvas.registerFont('../res/fonts/ulm_grotesk.ttf', { family: "grotesk"})
+    Canvas.registerFont('./ulm_grotesk.ttf', { family: "grotesk"})
 
     console.log(`${bot.user.username} is online`);
     
