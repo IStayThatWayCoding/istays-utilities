@@ -269,7 +269,7 @@ module.exports = async (message, bot) => {
 
     // Count messages towards the count (msgCount)
 
-    await mongoose.then(async mongoose => {
+    await mongoose().then(async mongoose => {
         const results = await rankSchema.find({
             id: message.author.id
         }).catch(err => console.error(`${path.basename(__filename)} There was a problem finding a database entry: `, err));
