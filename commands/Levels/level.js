@@ -52,6 +52,7 @@ module.exports = {
 
                     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
+                    ctx.fillStyle = "rgba(0,0,0,0.5)";
                     ctx.fillRect(20, 30, canvas.width - 40, canvas.height - 60);
 
                     let userDiscrim = username + "#" + discrim;
@@ -64,7 +65,7 @@ module.exports = {
                     } else {
                         ctx.font = "37px grotesk";
                     }
-                    ctx.fillStyle("#ffffff");
+                    ctx.fillStyle = "#ffffff"
                     ctx.fillText(userDiscrim, canvas.width / 3.8, canvas.height / 2.8);
 
                     ctx.font = "35px grotesk";
