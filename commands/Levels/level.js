@@ -57,18 +57,18 @@ module.exports = {
 
                     let userDiscrim = username + "#" + discrim;
                     if (userDiscrim.length > 30) {
-                        ctx.font = "30px Minecraft";
+                        ctx.font = "30px grotesk";
                         userDiscrim = userDiscrim.slice(0, 25) + "...";
                     } else if (userDiscrim.legnth > 20) {
-                        ctx.font = "30px Minecraft";
+                        ctx.font = "30px grotesk";
 
                     } else {
-                        ctx.font = "37px Minecraft";
+                        ctx.font = "37px grotesk";
                     }
                     ctx.fillStyle("#ffffff");
                     ctx.fillText(userDiscrim, canvas.width / 3.8, canvas.height / 2.8);
 
-                    ctx.font = "35px Minecraft";
+                    ctx.font = "35px grotesk";
                     ctx.fillStyle = "#44eaff";
                     ctx.fillText(`Rank ${level}`, camvas.width / 3.8, canvas.height / 1.6);
 
@@ -76,7 +76,7 @@ module.exports = {
                     let xp3 = kFormatter(xxp);
                     let count = kFormatter(msgCount);
 
-                    ctx.font = "23px Minecraft";
+                    ctx.font = "23px grotesk";
                     ctx.fillStyle = "#ffffff";
                     ctx.textAlign = "right";
                     ctx.fillText(`Message Count" ${count}`, canvas.width / 1.16, canvas.height / 1.6);
@@ -105,16 +105,16 @@ module.exports = {
                         ctx.fill();
                     }
 
-                    ctx.font = "24px Minecraft";
+                    ctx.font = "24px grotesk";
                     ctx.fillStyle = "#000000";
                     ctx.fillText(`${xp3} / ${xp2} XP`, canvas.width / 1.525, canvas.height / 1.31);
 
                     if (rankPos.length >= 5) {
-                        ctx.font = "45px Minecraft";
+                        ctx.font = "45px grotesk";
                     } else if (rankPos.length >= 3) {
-                        ctx.font = "50px Minecraft";
+                        ctx.font = "50px grotesk";
                     } else {
-                        ctx.font = "60px Minecraft";
+                        ctx.font = "60px grotesk";
                     }
 
                     if (rankPos === 1) {
@@ -124,7 +124,7 @@ module.exports = {
                     } else if (rankPos === 3) {
                         ctx.drawImage(rankThird, 820, 50, 70, 70);
                     } else {
-                        ctx.font = "55px Minecraft";
+                        ctx.font = "55px grotesk";
                         ctx.fillStyle = "#44eaff";
                         ctx.textAlign = "right";
                         ctx.fillText(`#${rankPos}`, canvas.width / 1.05, canvas.height / 2.8);

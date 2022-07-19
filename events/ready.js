@@ -1,10 +1,11 @@
 const rankSort = require('../modules/rank_sort');
 const Canvas = require('canvas');
 const cronjob = require('cron').CronJob;
+const a = require('../res/fonts')
 
 module.exports = bot => {
   
-    Canvas.registerFont('../res/fonts/Minecraft.ttf', { family: "normal"})
+    Canvas.registerFont('../res/fonts/ulm_grotesk.ttf', { family: "grotesk"})
 
     console.log(`${bot.user.username} is online`);
     
