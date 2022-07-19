@@ -135,7 +135,7 @@ module.exports = {
                     ctx.closePath();
                     ctx.clip();
 
-                    const avatarURL = target.user.avatarURL({format: "png"}) + "?size=64";
+                    const avatarURL = target.displayAvatarURL({dynamic: false, format: 'png'})
                     const avatar = await Canvas.loadImage(avatarURL);
                     ctx.drawImage(avatar, 60, 60, 160, 160);
 
