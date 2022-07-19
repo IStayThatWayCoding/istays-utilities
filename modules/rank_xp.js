@@ -76,13 +76,7 @@ module.exports = async (message, bot) => {
             }
 
             for (const data of results) {
-                let {
-                    xp,
-                    xxp,
-                    xxxp,
-                    level,
-                    msgCount
-                } = data;
+                let { xp, xxp, xxxp, level, msgCount} = data;
 
                 let msgMath = parseInt(msgCount) + 1;
                 let random = randomNum(15, 25);
@@ -133,6 +127,8 @@ module.exports = async (message, bot) => {
                     }, {
                         upsert: true
                     }).catch(err => console.error(`${path.basename(__filename)} There was a problem updating a database entry: `, err));
+
+                    console.log(xxp);
 
                     // let memberRole = guild.roles.cache.get('932725047737585684');
                     let lvl5 = guild.roles.cache.get('932729951675887637');
