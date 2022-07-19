@@ -88,7 +88,7 @@ module.exports = async (message, bot) => {
                 let newUsername = message.author.username;
                 let newDiscrim = message.author.discriminator;
 
-                console.log(xxp);
+                console.log(parseInt(xxp));
 
                 rankPosArr = [];
                 for (let i = 0; i < sortArr.length; i++) {
@@ -277,7 +277,7 @@ module.exports = async (message, bot) => {
                 msgCount
             } = data;
 
-            // let msgMath = parseInt(msgCount) + 1;
+            let msgMath = parseInt(msgCount) + 1;
 
             console.log(msgCount);
 
