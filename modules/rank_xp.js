@@ -4,6 +4,7 @@ const {
 const mongo = require('../utils/mongoose');
 const rankSchema = require('../models/rank_schem');
 const path = require('path');
+const mongoose = require('../utils/mongoose');
 const xpLimit = new Set();
 
 module.exports = async (message, bot) => {
@@ -14,7 +15,7 @@ module.exports = async (message, bot) => {
     const disableXP = [botChannel, chatBotChannel];
 
     if (!message.author.bot && !xpLimit.has(message.author.id)) {
-        await mongo().then(async mongoose => {
+        await mongoose().then(async mongoose => {
 
             const sort = await rankSchema.find().catch(err => console.error(`${path.basename(__filename)} There was a problem finding a database entry: `, err));
 
@@ -268,7 +269,7 @@ module.exports = async (message, bot) => {
 
     // Count messages towards the count (msgCount)
 
-    await mongo().then(async mongoose => {
+    await mongoose.then(async mongoose => {
         const results = await rankSchema.find({
             id: message.author.id
         }).catch(err => console.error(`${path.basename(__filename)} There was a problem finding a database entry: `, err));
