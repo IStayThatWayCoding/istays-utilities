@@ -279,7 +279,7 @@ module.exports = async (message, bot) => {
                 msgCount
             } = data;
 
-            let msgMath = parseInt(msgCount, undefined) + 1;
+            let msgMath = parseInt(msgCount) + 1;
 
             await rankSchema.findOneAndUpdate({
                 id: messsage.author.id
@@ -289,5 +289,5 @@ module.exports = async (message, bot) => {
                 upsert: true
             }).catch(err => console.error(`${path.basename(__filename)} There was a problem updating a database entry: `, err));
         }
-    })
+    }).catch(err => console.error(`${path.basename(__filename)} There was a problem connecting to the database: `, err));
 }
