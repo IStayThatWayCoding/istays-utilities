@@ -279,7 +279,7 @@ module.exports = async (message, bot) => {
                 msgCount
             } = data;
 
-            let msgMath = parseInt(msgCount) + 1;
+            let msgMath = parseInt(msgCount, undefined) + 1;
 
             await rankSchema.findOneAndUpdate({
                 id: messsage.author.id
