@@ -4,7 +4,7 @@ const cronjob = require('cron').CronJob;
 const mongo = require('../utils/mongoose');
 const path = require('path')
 
-module.exports = bot => {
+module.exports = async (bot) => { 
   
     Canvas.registerFont('./ulm_grotesk.ttf', { family: "grotesk"})
 
