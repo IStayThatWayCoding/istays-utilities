@@ -46,6 +46,7 @@ module.exports = {
                         xxxp
                     } = info;
 
+                    console.log(rank);
                     const rankPos = parseInt(rank);
                     const canvas = Canvas.createCanvas(930, 280);
                     const ctx = canvas.getContext("2d");
