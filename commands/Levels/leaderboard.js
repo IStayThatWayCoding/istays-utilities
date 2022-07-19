@@ -13,8 +13,8 @@ module.exports = {
                 const response = new Discord.MessageEmbed()
                     .setColor('#32BEA6')
                     .setFooter({
-                        text: guild.name,
-                        iconURL: guild.iconURL({
+                        text: message.guild.name,
+                        iconURL: message.guild.iconURL({
                             dynamic: true
                         })
                     })
