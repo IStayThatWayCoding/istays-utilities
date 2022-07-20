@@ -12,12 +12,6 @@ module.exports = {
         run: async (bot, message, args, guild) => {
                 const response = new Discord.MessageEmbed()
                     .setColor('#32BEA6')
-                    .setFooter({
-                        text: message.guild.name,
-                        iconURL: message.guild.iconURL({
-                            dynamic: true
-                        })
-                    })
                     .setTimestamp()
 
                 await mongo().then(async mongoose => {
@@ -61,16 +55,11 @@ module.exports = {
                 }
 
 
-            
+            // response.setDescription(`:trophy: \`IStay's Resort Leaderboard\`\n\n🥇 <@${rankArr[0].id}> - **${rankArr[0].xp}** XP\n🥈 <@${rankArr[1].id}> - **${rankArr[1].xp}** XP\n🥉 <@${rankArr[2].id}> - **${rankArr[2].xp}** XP\n\`4.\` <@${rankArr[3].id}> - **${rankArr[3].xp}** XP\n\`5.\` <@${rankArr[4].id}> - **${rankArr[4].xp}** XP\n\`6.\` <@${rankArr[5].id}> - **${rankArr[5].xp}** XP\n\`7.\` <@${rankArr[6].id}> - **${rankArr[6].xp}** XP\n\`8.\` <@${rankArr[7].id}> - **${rankArr[7].xp}** XP\n\`9.\` <@${rankArr[8].id}> - **${rankArr[8].xp}** XP\n\`10.\` <@${rankArr[9].id}> - **${rankArr[9].xp}** XP`, false)
 
-            response.setTitle('🏆 - IStay\'s Resort Leaderboard')
-            response.addField('🥇 - #1', `<@${rankArr[0].id}> - **${rankArr[0].xp}** XP`)
-            response.addField('🥈 - #2', `<@${rankArr[1].id}> - **${rankArr[1].xp}** XP`)
-
+                response.setDescription(`This command is currently unavailable. Please try again later.`)
             message.channel.send(response);
 
             }
 
         }
-
-        // - **${rankArr[0].xp}** XP\n🥈 <@${rankArr[1].id}> - **${rankArr[1].xp}** XP\n🥉 <@${rankArr[2].id}> - **${rankArr[2].xp}** XP\n\`4.\` <@${rankArr[3].id}> - **${rankArr[3].xp}** XP\n\`5.\` <@${rankArr[4].id}> - **${rankArr[4].xp}** XP\n\`6.\` <@${rankArr[5].id}> - **${rankArr[5].xp}** XP\n\`7.\` <@${rankArr[6].id}> - **${rankArr[6].xp}** XP\n\`8.\` <@${rankArr[7].id}> - **${rankArr[7].xp}** XP\n\`9.\` <@${rankArr[8].id}> - **${rankArr[8].xp}** XP\n\`10.\` <@${rankArr[9].id}> - **${rankArr[9].xp}** XP
