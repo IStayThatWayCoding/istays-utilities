@@ -119,7 +119,7 @@ module.exports = async (message, bot) => {
                     let levelMath = parseInt(level) + 1;
                     let exponential = 5 * Math.pow(levelMath, 2) + (50 * levelMath) + 100 - 0;
 
-                    let levelUpChannel = message.guild.channel.cache.get('988686871209070612')
+                    let levelUpChannel = message.guild.channels.cache.get('988686871209070612')
 
                     let theEmbed = new Discord.MessageEmbed()
                     .setTitle("Level Up")
