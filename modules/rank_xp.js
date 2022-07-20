@@ -12,7 +12,7 @@ module.exports = async (message, bot) => {
     const botChannel = guild.channels.cache.get('988686880889507890');
     const chatBotChannel = guild.channels.cache.get('996676151172943906');
 
-    const disableXP = [botChannel.id, chatBotChannel.id];
+    const disableXP = ['988686880889507890', '996676151172943906'];
 
     if (!message.author.bot && !xpLimit.has(message.author.id)) {
         await mongoose().then(async mongoose => {
