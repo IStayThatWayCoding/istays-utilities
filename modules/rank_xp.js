@@ -78,7 +78,7 @@ module.exports = async (message, bot) => {
             for (const data of results) {
                 let { xp, xxp, xxxp, level, msgCount} = data;
 
-                console.log(msgCount);
+                
                 let msgMath = parseInt(msgCount) + 1;
                 let random = randomNum(15, 25);
                 let xpMath =  parseInt(xp) + random;
@@ -89,7 +89,7 @@ module.exports = async (message, bot) => {
                 let newUsername = message.author.username;
                 let newDiscrim = message.author.discriminator;
 
-                console.log(parseInt(xxp));
+                
 
                 rankPosArr = [];
                 for (let i = 0; i < sortArr.length; i++) {
