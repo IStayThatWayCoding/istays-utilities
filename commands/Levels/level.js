@@ -80,7 +80,7 @@ module.exports = {
                     ctx.font = "23px grotesk";
                     ctx.fillStyle = "#ffffff";
                     ctx.textAlign = "right";
-                    ctx.fillText(`Message Count" ${count}`, canvas.width / 1.16, canvas.height / 1.6);
+                    ctx.fillText(`Message Count ${count}`, canvas.width / 1.16, canvas.height / 1.6);
 
                     const percentage = Math.floor((xxp / xxxp) * 100);
                     const roundedPercent = Math.round(percentage);

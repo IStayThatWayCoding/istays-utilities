@@ -52,7 +52,7 @@ module.exports = {
 
                 rankArr = [];
                 for (let i = 0; i < sortArr.length; i++) {
-                    let exists = guild.members.cache.get(sortArr[i].id);
+                    let exists = message.guild.members.cache.get(sortArr[i].id);
 
                     if (exists) {
                         xpkFormat = kFormatter(sortArr[i].xp);
