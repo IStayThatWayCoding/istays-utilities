@@ -7,10 +7,10 @@ const User = require('../../models/user')
 const Guild = require('../../models/guild');
 
 module.exports = {
-    name: 'quarantine',
+    name: 'qunuarantine',
     category: 'Moderation',
-    description: 'Quarantines someone from the server. - ADMIN ONLY',
-    usage: `quarantine <@user> <reason>`,
+    description: 'Unqarantines someone from the server. - ADMIN ONLY',
+    usage: `unquarantine <@user> <reason>`,
     run: async (bot, message, args) => {
         if (!message.member.roles.cache.has('932720790451945602')) return message.channel.send("You must have the **Admin** role to use this command.")
 
