@@ -56,10 +56,7 @@ module.exports = {
 
                     if (exists) {
                         xpkFormat = kFormatter(sortArr[i].xp);
-                        rankArr.push({
-                            id: sortArr[i].id,
-                            xp: xpkFormat
-                        });
+                        rankArr.push({ id: sortArr[i].id, xp: xpkFormat });
                     }
                 }
 
