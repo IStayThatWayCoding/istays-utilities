@@ -12,7 +12,7 @@ module.exports = async (message, bot) => {
     const botChannel = guild.channels.cache.get('988686880889507890');
     const chatBotChannel = guild.channels.cache.get('996676151172943906');
 
-    const disableXP = [botChannel, chatBotChannel];
+    const disableXP = [botChannel.id, chatBotChannel.id];
 
     if (!message.author.bot && !xpLimit.has(message.author.id)) {
         await mongoose().then(async mongoose => {
@@ -35,9 +35,6 @@ module.exports = async (message, bot) => {
             sortArr.sort(function (a, b) {
                 return b.xp - a.xp;
             });
-
-            console.log(botChannel);
-            console.log(chatBotChannel);
 
             const results = await rankSchema.find({
                 id: message.author.id
