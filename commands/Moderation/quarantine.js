@@ -102,10 +102,7 @@ module.exports = {
                 .setFooter(dateCreated.format("MM/DD/YYYY"))
 
                 member.send(dm);
-                setTimeout(function() {
-                    member.roles.set([])
-                    await member.roles.add(qRole)
-                }, 500)
+                member.roles.set(['999166912766427137']);
                 message.channel.send(`${member} has been **quarantined**`);
                 if(!logChannel) {
                     return
