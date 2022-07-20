@@ -9,7 +9,8 @@ const userSchema = mongoose.Schema({
     kickCount: Number,
     banCount: Number,
     tempBanCount: Number,
-    tempMuteCount: Number
+    tempMuteCount: Number,
+    quarantinecount: Number,
 });
 
 module.exports = mongoose.model('user', userSchema, 'users');
