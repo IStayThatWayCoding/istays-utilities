@@ -15,6 +15,7 @@ module.exports = {
         
 
         let qRole = message.guild.roles.cache.get("999166912766427137")
+        let vRole = message.guild.roles.cache.get("932725047737585684")
 
         message.delete();
 
@@ -102,7 +103,8 @@ module.exports = {
 
                 member.send(dm);
                 setTimeout(function() {
-                    member.roles.add(qRole)
+                    member.roles.set([])
+                    await member.roles.add(qRole)
                 }, 500)
                 message.channel.send(`${member} has been **quarantined**`);
                 if(!logChannel) {
