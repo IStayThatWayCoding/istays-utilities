@@ -124,7 +124,7 @@ module.exports = async (message, bot) => {
                     let theEmbed = new Discord.MessageEmbed()
                     .setTitle("Level Up")
                     .setColor("RANDOM")
-                    .setDescription(`@<${message.author}> has leveled up to level **${levelMath}**!`)
+                    .setDescription(`${message.author} has leveled up to level **${levelMath}**!`)
 
                     levelUpChannel.send(theEmbed);
                     levelUpChannel.send(`<@${message.author.id}>`).then(m => m.delete({ timeout: 500 }))
