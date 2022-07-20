@@ -36,6 +36,9 @@ module.exports = async (message, bot) => {
                 return b.xp - a.xp;
             });
 
+            console.log(botChannel);
+            console.log(chatBotChannel);
+
             const results = await rankSchema.find({
                 id: message.author.id
             }).catch(err => console.err(`${path.basename(__filename)} There was a problem finding a database entry: `, err))
