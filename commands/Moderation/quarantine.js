@@ -12,13 +12,15 @@ module.exports = {
     description: 'Quarantines someone from the server. - ADMIN ONLY',
     usage: `quarantine <@user> <reason>`,
     run: async (bot, message, args) => {
-        if (!message.member.roles.cache.has('932720790451945602')) return message.channel.send("You must have the **Admin** role to use this command.")
+        
 
         let qRole = message.guild.roles.cache.get("999166912766427137")
 
         message.delete();
 
         const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
+
+        if (!message.member.roles.cache.has('932720790451945602')) return message.channel.send("You must have the **Admin** role to use this command.")
 
         const guildDB = await Guild.findOne({
             guildID: message.guild.id
