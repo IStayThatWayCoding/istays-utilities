@@ -3,7 +3,7 @@ const colors = require('../../colors.json');
 
 module.exports = {
     name: 'whois',
-    aliases: ['whois'],
+    aliases: ['userinfo'],
     category: 'Information',
     description: 'Displays info about the mentioned user.',
     usage: `whois <@user>`,
