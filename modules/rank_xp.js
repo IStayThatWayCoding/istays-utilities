@@ -1,6 +1,4 @@
-const {
-    Message
-} = require('discord.js');
+const Discord = require('discord.js');
 const mongo = require('../utils/mongoose');
 const rankSchema = require('../models/rank_schem');
 const path = require('path');
@@ -119,6 +117,15 @@ module.exports = async (message, bot) => {
                 if (xxpMath > xxxpInt) {
                     let levelMath = parseInt(level) + 1;
                     let exponential = 5 * Math.pow(levelMath, 2) + (50 * levelMath) + 100 - 0;
+
+                    let levelUpChannel = message.guild.channel.cache.get('988686871209070612')
+
+                    let theEmbed = new Discord.MessageEmbed()
+                    .setTitle("Level Up")
+                    .setColor("RANDOM")
+                    .setDescription(`${message.author.tag} has leveled up to level **${levelMath}**!`)
+
+                    levelUpChannel.send(theEmbed);
 
                     await rankSchema.findOneAndUpdate({
                         id: message.author.id

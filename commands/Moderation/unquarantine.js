@@ -7,7 +7,7 @@ const User = require('../../models/user')
 const Guild = require('../../models/guild');
 
 module.exports = {
-    name: 'qunuarantine',
+    name: 'unquarantine',
     category: 'Moderation',
     description: 'Unqarantines someone from the server. - ADMIN ONLY',
     usage: `unquarantine <@user> <reason>`,
