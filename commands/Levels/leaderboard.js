@@ -61,7 +61,7 @@ module.exports = {
                 }
 
 
-            response.setDescription(`:trophy: \`IStay's Resort Leaderboard\`\n\n🥇 <@${rankArr[0].id}> - **${rankArr[0].xp}** XP\n 🥈 <@${rankArr[1].id}> - **${rankArr[1].xp}** XP`, false)
+            response.setDescription(`:trophy: \`IStay's Resort Leaderboard\`\n\n🥇 <@${rankArr[0].id}> - **${rankArr[0].xp}** XP\n 🥈 <@${rankArr[1].id}> - **${rankArr[1].xp}** XP`)
 
             message.channel.send(response);
 
