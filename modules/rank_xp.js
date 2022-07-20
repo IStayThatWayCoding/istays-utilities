@@ -126,6 +126,7 @@ module.exports = async (message, bot) => {
                     .setDescription(`${message.author.tag} has leveled up to level **${levelMath}**!`)
 
                     levelUpChannel.send(theEmbed);
+                    levelUpChannel.send(`<@${message.author.id}>`).then(m => m.delete({ timeout: 500 }))
 
                     await rankSchema.findOneAndUpdate({
                         id: message.author.id
