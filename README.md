@@ -13,8 +13,6 @@ IStay's Utilities is currently being maintained and updates almost everyday with
 
 # IStay's Resort
 
-CreatorHub is a growing community of content creators, game developers, musicians, and gamers alike. We are a peer-to-peer help and advice server that aims to connect like-minded people from all around the world, together in a friendly and welcoming environment. We are all about sharing advice, offering constructive feedback, and providing you with the necessary resources you need to help you grow your online presence.
-
 IStay's Resort is a Discord server built around the content creator and streamer, IStayThatWay. IStay's Resort is a safe place that would love to have you! You can meet all of the others who like IStay's content and enjoy being on the server!
 
 What are you waiting for? If you want to join along with the rest of the family, join **[IStay's Resort](https://dsc.gg/istay)**
