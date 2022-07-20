@@ -10,7 +10,7 @@ module.exports = async () => {
             family:4
         };
 
-        mongoose.connect('mongodb+srv://IStay:JusSmi68@istayutil.zppsi1m.mongodb.net/Data', dbOptions);
+        mongoose.connect(process.env.MONGOURL, dbOptions);
         mongoose.Promise = global.Promise;
 
         mongoose.connection.on('connected', () => {
