@@ -8,7 +8,7 @@ module.exports = async (bot, member, guild, args) => {
 
     let anotherEmbed = new Discord.MessageEmbed()
         .setColor("RANDOM")
-        .setDescription(`**[LEAVE]** - <@${user.tag}>`)
+        .setDescription(`**[LEAVE]** - <@${user.id}>`)
 
     await welcomeChannel.send(anotherEmbed);
 
