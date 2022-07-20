@@ -27,8 +27,6 @@ module.exports = {
 
         const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 
-        if(!member.roles.cache.has('999166912766427137')) return message.channel.send("This user isn't quarantined.");
-
         const guildDB = await Guild.findOne({
             guildID: message.guild.id
         }, async (err, guild) => {
