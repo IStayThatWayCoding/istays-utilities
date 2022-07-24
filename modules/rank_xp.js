@@ -78,8 +78,8 @@ module.exports = async (message, bot) => {
 
                 
                 let msgMath = parseInt(msgCount) + 1;
-                // let random = randomNum(15, 25);
-                let random = randomNum(45, 75)
+                let random = randomNum(15, 25);
+                // let random = randomNum(45, 75) (boost XP 3x)
                 let xpMath =  parseInt(xp) + random;
                 let xxpMath = parseInt(xxp) + random;
 
@@ -162,7 +162,7 @@ module.exports = async (message, bot) => {
                             .setTitle("Level Reward!")
                             .setDescription("Hey there! You just unlocked a new level role! Information is below.")
                             .addField("Level Milestone:", "Level 5")
-                            .addField("Role Unlocked:", `<@&${lvl5}>`)
+                            .addField("Role Unlocked:", `Level 5+`)
 
                         message.author.send(embed);
                     }
@@ -179,7 +179,7 @@ module.exports = async (message, bot) => {
                             .setTitle("Level Reward!")
                             .setDescription("Hey there! You just unlocked a new level role! Information is below.")
                             .addField("Level Milestone:", "Level 10")
-                            .addField("Role Unlocked:", `<@&${lvl10}>`)
+                            .addField("Role Unlocked:", `Level 10+`)
 
                         message.author.send(embed);
                     }
@@ -195,7 +195,7 @@ module.exports = async (message, bot) => {
                             .setTitle("Level Reward!")
                             .setDescription("Hey there! You just unlocked a new level role! Information is below.")
                             .addField("Level Milestone:", "Level 20")
-                            .addField("Role Unlocked:", `<@&${lvl20}>`)
+                            .addField("Role Unlocked:", `Level 20+`)
 
                         message.author.send(embed);
                     }
@@ -211,7 +211,7 @@ module.exports = async (message, bot) => {
                             .setTitle("Level Reward!")
                             .setDescription("Hey there! You just unlocked a new level role! Information is below.")
                             .addField("Level Milestone:", "Level 30")
-                            .addField("Role Unlocked:", `<@&${lvl30}>`)
+                            .addField("Role Unlocked:", `Level 30+`)
 
                         message.author.send(embed);
                     }
@@ -227,7 +227,7 @@ module.exports = async (message, bot) => {
                             .setTitle("Level Reward!")
                             .setDescription("Hey there! You just unlocked a new level role! Information is below.")
                             .addField("Level Milestone:", "Level 40")
-                            .addField("Role Unlocked:", `<@&${lvl40}>`)
+                            .addField("Role Unlocked:", `Level 40+`)
 
                         message.author.send(embed);
                     }
@@ -243,7 +243,7 @@ module.exports = async (message, bot) => {
                             .setTitle("Level Reward!")
                             .setDescription("Hey there! You just unlocked a new level role! Information is below.")
                             .addField("Level Milestone:", "Level 50")
-                            .addField("Role Unlocked:", `<@&${lvl50}>`)
+                            .addField("Role Unlocked:", `Level 50+`)
 
                         message.author.send(embed);
                     }
@@ -259,7 +259,7 @@ module.exports = async (message, bot) => {
                             .setTitle("Level Reward!")
                             .setDescription("Hey there! You just unlocked a new level role! Information is below.")
                             .addField("Level Milestone:", "Level 60")
-                            .addField("Role Unlocked:", `<@&${lvl60}>`)
+                            .addField("Role Unlocked:", `Level 60+`)
 
                         message.author.send(embed);
                     }
