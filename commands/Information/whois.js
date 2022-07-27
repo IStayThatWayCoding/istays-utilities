@@ -11,7 +11,7 @@ module.exports = {
         const member = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 
         if (!member)
-            member = message.author;
+            return message.channel.send('You must mention a user that you want information about.').then(m => m.delete({timeout: 5000}));
 
         const embed = new MessageEmbed()
             .setColor(colors.blue_light)
