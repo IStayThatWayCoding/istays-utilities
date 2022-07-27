@@ -6,7 +6,7 @@ module.exports = {
     name: 'serverinfo',
     category: 'Information',
     description: 'Displays info about the current server.',
-    usage: `serverInfo`,
+    usage: `serverinfo`,
     run: async (bot, message, args) => {
         const embed = new MessageEmbed()
             .setColor(colors.pink)
