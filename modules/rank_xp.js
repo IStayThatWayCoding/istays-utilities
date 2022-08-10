@@ -68,6 +68,7 @@ module.exports = async (message, bot) => {
             }
 
             if (disableXP.includes(message.channel.id)) return;
+            if (message.member.roles.cache.has(process.env.NOXP)) return;
 
             function randomNum(min, max) {
                 return Math.floor(Math.random() * (max - min - 1) + min);

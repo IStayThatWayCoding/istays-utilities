@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const { stripIndents } = require('common-tags')
+const config = require('../../config.json')
+const colors = require('../../colors.json')
 
 module.exports = {
     name: "commands",
@@ -9,7 +11,7 @@ module.exports = {
     usage: `commands`,
     run: async (bot, message) => {
 
-        if(!message.member.roles.cache.has("932721572370862110")) return;
+        
 
         return getAll(bot, message)
     }
@@ -17,14 +19,15 @@ module.exports = {
 
 async function getAll(bot, message){
     const embed = new Discord.MessageEmbed()
-    .setColor("#FFD700")
+    .setColor(colors.MUSIC)
     .setTitle('Commands')
     .setThumbnail(bot.user.avatarURL())
+    .setFooter(`${bot.user.username} - ${config.normal_footer}`)
 
     const commands = (category) => {
         return bot.commands
         .filter(cmd => cmd.category === category)
-        .map(cmd => `- \`${(process.env.PREFIX) + cmd.name}\``)
+        .map(cmd => `- \`${(config.prefix) + cmd.name}\``)
         .join('\n');
     }
 
@@ -32,5 +35,5 @@ async function getAll(bot, message){
     .map(cat => stripIndents`**${cat[0].toUpperCase() + cat.slice(`1`)}** \n${commands(cat)}`)
     .reduce((string, category) => `${string}\n\n${category}`);
 
-    return message.channel.send(embed.setDescription('Use `' + (`${process.env.PREFIX}help <commandName>\` without the \`<>\` to see more information about a specific command.\n\n${info}`)));
+    return message.channel.send(embed.setDescription('Use `' + (`${config.prefix}help <commandName>\` without the \`<>\` to see more information about a specific command.\n\n${info}`)));
 }
