@@ -8,7 +8,7 @@ module.exports = {
         aliases: ['lb'],
         category: 'Levels',
         description: 'Top 5 XP users!',
-        usage: `level/rank/xp`,
+        usage: `leaderboard`,
         run: async (bot, message, args, guild) => {
                 const response = new Discord.MessageEmbed()
                     .setColor('#32BEA6')
