@@ -45,9 +45,8 @@ module.exports = {
                 .catch(err => console.error(err));
 
                 const embed = new MessageEmbed()
-                .setTitle('Cases')
                 .setColor(colors.blue_dark)
-                .setAuthor(member.user.username, member.user.avatarURL())
+                .setAuthor(`${member.user.username}'s History`, member.user.avatarURL())
                 .addFields(
                     {name: 'Mutes', value: `${newUser.muteCount}`, inline: true},
                     {name: 'Warns', value: `${newUser.warnCount}`, inline: true},
@@ -63,9 +62,8 @@ module.exports = {
             } else {
 
                 const embed = new MessageEmbed()
-                .setTitle('Cases')
                 .setColor(colors.blue_dark)
-                .setAuthor(member.user.username, member.user.avatarURL())
+                .setAuthor(`${member.user.username}'s History`, member.user.avatarURL())
                 .addFields(
                     {name: 'Mutes', value: `${user.muteCount}`, inline: true},
                     {name: 'Warns', value: `${user.warnCount}`, inline: true},
