@@ -18,6 +18,7 @@ bot.distube = new DisTube(bot, {
     leaveOnEmpty: true,
     leaveOnFinish: false,
     leaveOnStop: true,
+    youtubeDL: false,
 });
 
 
