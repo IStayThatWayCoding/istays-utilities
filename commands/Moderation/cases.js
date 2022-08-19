@@ -45,31 +45,37 @@ module.exports = {
                 .catch(err => console.error(err));
 
                 const embed = new MessageEmbed()
-                    .setColor(colors.blue_dark)
-                    .setTitle('Cases')
-                    .setAuthor(member.user.username, member.user.avatarURL())
-                    .addField('Mutes', newUser.muteCount)
-                    .addField('Warns', newUser.warnCount)
-                    .addField('Kicks', newUser.kickCount)
-                    .addField('Bans', newUser.banCount)
-                    .addField('Temp-Mutes', newUser.tempMuteCount)
-                    .addField('Temp-Bans', newUser.tempBanCount)
-                    .addField('Quarantines', newUser.quarantineCount)
+                .setTitle('Cases')
+                .setColor(colors.blue_dark)
+                .setAuthor(member.user.username, member.user.avatarURL())
+                .addFields(
+                    {name: 'Mutes', value: `${newUser.muteCount}`, inline: true},
+                    {name: 'Warns', value: `${newUser.warnCount}`, inline: true},
+                    {name: 'Kicks', value: `${newUser.kickCount}`, inline: true},
+                    {name: 'Bans', value: `${newUser.banCount}`, inline: true},
+                    {name: 'Temp-Mutes', value: `${newUser.tempMuteCount}`, inline: true},
+                    {name: 'Temp-Bans', value: `${newUser.tempBanCount}`, inline: true},
+                    {name: 'Quarantines', value: `${newUser.quarantineCount}`, inline: true},
+                )
+                .setTimestamp();
 
                     return message.channel.send(embed);
             } else {
 
                 const embed = new MessageEmbed()
-                .setColor(colors.blue_dark)
                 .setTitle('Cases')
+                .setColor(colors.blue_dark)
                 .setAuthor(member.user.username, member.user.avatarURL())
-                .addField('Mutes', user.muteCount)
-                .addField('Warns', user.warnCount)
-                .addField('Kicks', user.kickCount)
-                .addField('Bans', user.banCount)
-                .addField('Temp-Mutes', user.tempMuteCount)
-                .addField('Temp-Bans', user.tempBanCount)
-                .addField('Qurantines', user.quarantineCount);
+                .addFields(
+                    {name: 'Mutes', value: `${user.muteCount}`, inline: true},
+                    {name: 'Warns', value: `${user.warnCount}`, inline: true},
+                    {name: 'Kicks', value: `${user.kickCount}`, inline: true},
+                    {name: 'Bans', value: `${user.banCount}`, inline: true},
+                    {name: 'Temp-Mutes', value: `${user.tempMuteCount}`, inline: true},
+                    {name: 'Temp-Bans', value: `${user.tempBanCount}`, inline: true},
+                    {name: 'Quarantines', value: `${user.quarantineCount}`, inline: true},
+                )
+                .setTimestamp();
 
                 return message.channel.send(embed);               
             }
