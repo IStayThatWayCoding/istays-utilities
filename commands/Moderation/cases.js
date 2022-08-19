@@ -36,7 +36,8 @@ module.exports = {
                     kickCount: 0,
                     banCount: 0,
                     tempBanCount: 0,
-                    tempMuteCount: 0
+                    tempMuteCount: 0,
+                    quarantineCount: 0,
                 })
                 await newUser.save()
                 .then(result => console.log(result))
@@ -51,7 +52,9 @@ module.exports = {
                     .addField('Warns', newUser.warnCount)
                     .addField('Kicks', newUser.kickCount)
                     .addField('Bans', newUser.banCount)
-                    .addField('Temp-Mutes', newUser.tempMuteCount);
+                    .addField('Temp-Mutes', newUser.tempMuteCount)
+                    .addField('Temp-Bans', newUser.tempBanCount)
+                    .addField('Quarantines', newUser.quarantineCount)
 
                     return message.channel.send(embed);
             } else {
@@ -64,7 +67,9 @@ module.exports = {
                 .addField('Warns', user.warnCount)
                 .addField('Kicks', user.kickCount)
                 .addField('Bans', user.banCount)
-                .addField('Temp-Mutes', user.tempMuteCount);
+                .addField('Temp-Mutes', user.tempMuteCount)
+                .addField('Temp-Bans', user.tempBanCount)
+                .addField('Qurantines', user.quarantineCount);
 
                 return message.channel.send(embed);               
             }
