@@ -10,7 +10,7 @@ module.exports = {
     description: "Gives a brief summary of a user's punishment count.",
     usage: `cases <@user>`,
     run: async (bot, message, args) => {
-        const member = message.mentions.members.first();
+        const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         
         if (!message.member.hasPermission('MANAGE_MESSAGES'))
             return message.channel.send('You are lacking the permission `MANAGE_MESSAGES`').then(m => m.delete({timeout: 5000}));
