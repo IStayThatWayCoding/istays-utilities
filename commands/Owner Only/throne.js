@@ -20,6 +20,7 @@ module.exports = {
        user.roles.add(role);
        message.react("<a:CH_IconVoteYes:991970613113667614>");
        user.send(`You have been given access to **IStay's Throne** in **${message.guild.name}** for ${time}.`)
+        .catch(() => message.channel.send(`${user} has been given access to **IStay's Throne** for ${time} *this message was sent because dms were off!*`))
 
        setTimeout(() => {
         user.roles.remove(role)
