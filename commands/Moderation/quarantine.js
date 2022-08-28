@@ -5,6 +5,7 @@ const moment = require('moment');
 const ms = require('ms');
 const User = require('../../models/user')
 const Guild = require('../../models/guild');
+const config = require('../../config.json')
 
 module.exports = {
     name: 'quarantine',
@@ -33,7 +34,7 @@ module.exports = {
                     _id: mongoose.Types.ObjectId(),
                     guildID: message.guild.id,
                     guildName: message.guild.name,
-                    prefix: process.env.PREIFX,
+                    prefix: config.prefix,
                     logChannelID: null
                 });
 

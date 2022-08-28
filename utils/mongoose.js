@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const config = require('../../config.json')
 
 module.exports = async () => { 
     init: () => {
@@ -10,7 +11,7 @@ module.exports = async () => {
             family:4
         };
 
-        mongoose.connect(process.env.MONGOURL, dbOptions);
+        mongoose.connect(config.MONGOURL, dbOptions);
         mongoose.Promise = global.Promise;
 
         mongoose.connection.on('connected', () => {

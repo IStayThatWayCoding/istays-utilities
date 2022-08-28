@@ -4,6 +4,7 @@ const rankSchema = require('../models/rank_schem');
 const path = require('path');
 const mongoose = require('../utils/mongoose');
 const xpLimit = new Set();
+const config = require('../../config.json')
 
 module.exports = async (message, bot) => {
     const guild = bot.guilds.cache.get('713668933433163827');
@@ -68,7 +69,7 @@ module.exports = async (message, bot) => {
             }
 
             if (disableXP.includes(message.channel.id)) return;
-            if (message.member.roles.cache.has(process.env.NOXP)) return;
+            if (message.member.roles.cache.has(config.NOXP)) return;
 
             function randomNum(min, max) {
                 return Math.floor(Math.random() * (max - min - 1) + min);

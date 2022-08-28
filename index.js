@@ -5,6 +5,7 @@ const Levels = require('discord-xp');
 const fs = require('fs');
 const { DisTube } = require ('distube');
 const colors = require('./colors.json');
+const config = require('./config.json');
 const message = require("./events/message");
 const { SpotifyPlugin } = require("@distube/spotify");
 const { SoundCloudPlugin } = require("@distube/soundcloud");
@@ -174,4 +175,4 @@ message.channel.send(
 )
 .on('searchDone', () => {})
 
-bot.login(process.env.TOKEN);
+bot.login(config.token);

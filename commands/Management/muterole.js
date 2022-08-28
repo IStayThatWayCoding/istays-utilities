@@ -2,6 +2,7 @@ const { MessageEmbed } = require('discord.js');
 const Guild = require('../../models/guild');
 const Users = require('../../models/user');
 const mongoose = require('mongoose');
+const config = require('../../config.json')
 
 module.exports = {
     name: 'muterole',
@@ -29,7 +30,7 @@ module.exports = {
                     _id: mongoose.Types.ObjectId(),
                     guildID: message.guild.id,
                     guildName: message.guild.name,
-                    prefix: process.env.PREFIX,
+                    prefix: config.prefix,
                     mutedRole: channel.id
                 });
 

@@ -1,6 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const Guild = require('../../models/guild');
 const mongoose = require('mongoose');
+const config = require('../../config.json')
 
 module.exports = {
     name: 'modlog',
@@ -28,7 +29,7 @@ module.exports = {
                     _id: mongoose.Types.ObjectId(),
                     guildID: message.guild.id,
                     guildName: message.guild.name,
-                    prefix: process.env.PREFIX,
+                    prefix: config.prefix,
                     logChannelID: channel.id,
                 });
 

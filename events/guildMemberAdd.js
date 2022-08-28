@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const Guild = require("../models/guild");
 const moment = require("moment");
 const mongoose = require("mongoose");
+const config = require('../../config.json')
 
 module.exports = async (bot, member, guild, args) => {
     const user = member.user;
@@ -17,7 +18,7 @@ module.exports = async (bot, member, guild, args) => {
                 _id: mongoose.Types.ObjectId(),
                 guildID: member.guild.id,
                 guildName: member.guild.name,
-                prefix: process.env.PREFIX,
+                prefix: config.prefix,
                 welcomeLogs: null,
                 logChannelID: null,
             });

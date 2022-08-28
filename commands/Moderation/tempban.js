@@ -4,6 +4,7 @@ const User = require('../../models/user');
 const Guild = require('../../models/guild');
 const moment = require('moment');
 const ms = require('ms');
+const config = require('../../config.json')
 
 module.exports = {
     name: 'tempban',
@@ -25,7 +26,7 @@ module.exports = {
                     _id: mongoose.Types.ObjectId(),
                     guildID: message.guild.id,
                     guildName: message.guild.name,
-                    prefix: process.env.PREFIX,
+                    prefix: config.prefix,
                     logChannelID: null
                 });
 

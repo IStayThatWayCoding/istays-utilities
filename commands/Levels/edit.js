@@ -1,5 +1,6 @@
 const mongo = require('../../utils/mongoose');
 const rankSchema = require('../../models/rank_schem');
+const config = require('../../config.json')
 
 module.exports = {
     name: 'edit',
@@ -13,7 +14,7 @@ module.exports = {
 
         const target = message.mentions.users.first() || bot.users.cache.get(args[0]) || message.author;
 
-        let usage = `${process.env.PREFIX}edit @user xp reset (only option available)`
+        let usage = `${config.prefix}edit @user xp reset (only option available)`
 
         if (!args[0]) return message.channel.send(`Invalid Syntax. \`${usage}\``);
         if (!target) return message.channel.send(`Member doesn't exist.`)

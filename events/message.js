@@ -5,6 +5,7 @@ const {
     DisTube
 } = require('distube');
 const rankXP = require('../modules/rank_xp');
+const config = require('../../config.json')
 
 // let previousCounter = [];
 // let count = 0;
@@ -19,7 +20,7 @@ module.exports = async (bot, message) => {
 
     if (message.author.bot) return;
 
-    let prefix = process.env.PREFIX;
+    let prefix = config.prefix;
 
     if (!message.guild) return;
 
