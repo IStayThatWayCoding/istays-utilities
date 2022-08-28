@@ -47,31 +47,31 @@ fs.readdir('./events/', (err, files) => {
     });
 });
 
-const status = queue =>
-    `Volume: \`${queue.volume}%\` | Filter: \`${
-        queue.filters.join(', ') || 'Off'
-    }\` | Loop: \`${
-        queue.repeatMode
-            ? queue.repeatMode === 2
-                ? 'All Queue'
-                : 'This Song'
-            : 'Off'
-    }\` | Autoplay: \`${queue.autoplay ? 'On' : 'Off'}\``
+// const status = queue =>
+//     `Volume: \`${queue.volume}%\` | Filter: \`${
+//         queue.filters.join(', ') || 'Off'
+//     }\` | Loop: \`${
+//         queue.repeatMode
+//             ? queue.repeatMode === 2
+//                 ? 'All Queue'
+//                 : 'This Song'
+//             : 'Off'
+//     }\` | Autoplay: \`${queue.autoplay ? 'On' : 'Off'}\``
 
 bot.distube
-    .on('playSong', (queue, song) =>
-        queue.textChannel?.send(
-            new MessageEmbed()
-            .setColor(colors.MUSIC)
-            .setDescription(`Playing \`${song.name}\` - \`${
-                song.formattedDuration
-            }\`\nRequested by: ${song.user}\n${status(queue)}`)
+    // .on('playSong', (queue, song) =>
+    //     queue.textChannel?.send(
+    //         new MessageEmbed()
+    //         .setColor(colors.MUSIC)
+    //         .setDescription(`Playing \`${song.name}\` - \`${
+    //             song.formattedDuration
+    //         }\`\nRequested by: ${song.user}\n${status(queue)}`)
             
-            // `Playing \`${song.name}\` - \`${
-            //     song.formattedDuration
-            // }\`\nRequested by: ${song.user}\n${status(queue)}`,
-        ),
-    )
+    //         // `Playing \`${song.name}\` - \`${
+    //         //     song.formattedDuration
+    //         // }\`\nRequested by: ${song.user}\n${status(queue)}`,
+    //     ),
+    // )
 
 
 
