@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const Guild = require("../models/guild");
 const moment = require("moment");
 const mongoose = require("mongoose");
-const config = require('../../config.json')
+const config = require('../config.json')
 
 module.exports = async (bot, member, guild, args) => {
     const user = member.user;

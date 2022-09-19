@@ -5,7 +5,7 @@ const {
     DisTube
 } = require('distube');
 const rankXP = require('../modules/rank_xp');
-const config = require('../../config.json')
+const config = require('../config.json')
 
 // let previousCounter = [];
 // let count = 0;

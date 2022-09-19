@@ -4,7 +4,7 @@ const rankSchema = require('../models/rank_schem');
 const path = require('path');
 const mongoose = require('../utils/mongoose');
 const xpLimit = new Set();
-const config = require('../../config.json')
+const config = require('../config.json')
 
 module.exports = async (message, bot) => {
     const guild = bot.guilds.cache.get('713668933433163827');
