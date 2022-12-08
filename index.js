@@ -3,7 +3,6 @@ const bot = new Client();
 const mongoose = require('mongoose');
 const Levels = require('discord-xp');
 const fs = require('fs');
-// const { DisTube } = require ('distube');
 const colors = require('./colors.json');
 const config = require('./config.json');
 const message = require("./events/message");

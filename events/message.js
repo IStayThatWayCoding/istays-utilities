@@ -1,9 +1,6 @@
 const Discord = require('discord.js');
 const Levels = require('discord-xp');
 const fetch = require('node-fetch').default;
-const {
-    DisTube
-} = require('distube');
 const rankXP = require('../modules/rank_xp');
 const config = require('../config.json')
 
