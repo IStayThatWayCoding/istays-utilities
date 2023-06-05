@@ -13,9 +13,10 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
         .setTitle("Streaming Room Opened")
         .setColor(colors.red_light)
-        .setDescription('ATTENTION EVERYONE - The streaming room has been opened because istay has decided to let people join on stream. In order to join, please ping istay (the owner) and he will let you in. Please remember that you will be on stream, and it is reccomennded that you have a decent mic!')
+        .setDescription('The streaming room has been opened because istay has decided to let people join on stream. In order to join, please ping istay (the owner) and he will let you in. Please remember that you will be on stream, and it is reccomennded that you have a decent mic!')
 
         message.channel.send(embed)
+        message.channel.send('@everyone').then(m => m.delete({ timeout: 5000 }))
            
     }
 }

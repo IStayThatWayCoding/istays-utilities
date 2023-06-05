@@ -21,7 +21,7 @@ module.exports = {
        message.react("<a:CH_IconVoteYes:991970613113667614>");
        user.send(`Your access **Streaming Room** in **${message.guild.name}** has been removed.`)
         .catch(() => message.channel.send(`${user}'s access to **Streaming Room** has been removed *this message was sent because dms were off!*`))
-       istay.send(`**LOG -** ${user}'s access was revoked from **Streaming Room**.'`)
+       istay.send(`**LOG -** ${user}'s access was revoked from **Streaming Room**.`)
 
 
 
